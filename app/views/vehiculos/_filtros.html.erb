@@ -1,0 +1,145 @@
+    <div class="col-xs-12 col-md-3 filters-container">
+      <div class="row bg-gris">
+<%= simple_form_for @vehiculo, method: 'get', defaults: { input_html: { class: 'form-control filter-input' }, label: false } do |f| %>
+        <!-- Header Reset -->
+        <div class="col-xs-12 col-md-12 ">
+          <div class="row filter" >
+            <div class="col-xs-12 header-ppal">
+              <h3><span class="glyphicon glyphicon-ok-sign"></span>Filtros Aplicados</h3>
+              <div id="chevron">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+              </div>
+            </div>
+            <div class="col-xs-12 filter-content" id="filtros_aplicados_contenido">
+              <div id="filtros-aplicados"></div>
+              <a class="btn btn-primary center-block" id="eliminar_todos"><i class="fa fa-trash-o"></i>&nbsp;Eliminar Todos</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row filter bg-gris">
+        <div class="col-xs-12  filters-header">
+              <h3><span class="glyphicon glyphicon-filter"></span>Filtros</h3>
+              <div id="chevron">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+              </div>
+        </div>
+        <div id="filtros_contenido">
+        <!-- SEGMENTOS -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Tipo de vehículo</h3>
+            </div>
+            <div class="col-xs-12">
+                <%= f.association :segmento, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todos', input_html: { class: 'form-control' } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- MARCAS -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Marca</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.association :marca, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>
+            </div>
+          </div>
+        </div>
+
+        <!-- PECIO -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Precio</h3>
+            </div>
+            <div class="col-xs-12">
+              <input type="text" class="span2 form-control">
+              <!-- Input para setear valor maximo de precio -->
+              <%= text_field_tag :precioMax_query, params[:precioMax_query], id: 'precioMax_query', class: 'form-control hidden'%>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="">Min</label>
+                <%= text_field_tag :precioMin, params[:precioMin], id: 'precioMin', class: 'form-control filter-input price-change', placeholder: 'Minimo' %>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div class="form-group">
+                <label for="">Max</label>
+                <%= text_field_tag :precioMax, params[:precioMax], id: 'precioMax', class: 'form-control filter-input price-change', placeholder: 'Maximo' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONDICION -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Condición</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.input :condicion, as: :select, collection: ['Nuevo | 0km', 'Usado'], prompt: 'Todas' %>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- COMBUSTIBLE -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Combustible</h3>
+            </div>
+            <div class="col-xs-12">
+              <div class="checkbox">
+                <label>
+                <input type='checkbox' value='Nafta' class="array_combustible">Nafta
+                </label><br>
+                <label>
+                <input type='checkbox' value='Diesel' class="array_combustible">Diesel
+                </label><br>
+                <label>
+                <input type='checkbox' value='GNC' class="array_combustible">GNC
+                </label><br>
+                <label>
+                <input type='checkbox' value='Otro' class="array_combustible">Otro
+                </label>
+              </div>
+              <%= f.input :combustible, wrapper_html: { class: 'hidden' } %>
+            </div>
+          </div>
+        </div>
+
+        <!-- UBICACION -->
+        <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
+          <div class="row filter">
+            <div class="col-xs-12 filter-header">
+              <h3><i class="fa fa-check"></i>&nbsp;Ubicación</h3>
+            </div>
+            <div class="col-xs-12">
+              <%= f.association :dpto_mendoza, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>
+            </div>
+          </div>
+        </div>
+        </div>
+      
+      </div> 
+<!-- termina segundo row -->
+    </div>
+    <!-- Ornenar -->
+    <div class="col-xs-12 col-md-9 filters-container order-filter">
+    	<div class="row">
+    		<div class="col-xs-12 col-sm-6 col-md-6">
+    			<h5>Se encontraron <strong>145</strong> vehículos</h5>
+    		</div>
+    		<div class="col-xs-12 col-sm-6 col-md-6">
+    			<%= select_tag "orden", options_for_select([ "Destacados", "Nuevos" ], "Destacados"), class: 'form-control filter-input' %>
+    		</div>
+    	</div>
+    </div>
+<% end %>
