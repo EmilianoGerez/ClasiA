@@ -43,7 +43,7 @@ ActiveAdmin.register Vehiculo do
         f.input :precio
         f.input :kilometraje
         f.input :combustible, :as => :select, :collection => ['Nafta', 'Nafta | GNC', 'Diesel', 'Diesel | GNC', 'GNC', 'Otro']
-        f.input :condicion, :as => :select, :collection => ['Nuevo', 'Usado']
+        f.input :condicion, :as => :select, :collection => ['Nuevo | 0km', 'Usado']
       end
       f.inputs "Caracteristicas" do
         f.input :equipamiento, :as => :check_boxes, :member_label => :nombre, :member_value => :nombre, :collection => Caracteristica.where(tipo: 'equipamiento'), :input_html => { :class => 'array_equipamiento'}

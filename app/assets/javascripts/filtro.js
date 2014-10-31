@@ -1,7 +1,55 @@
+function filtros_aplicados () {
+	var aplicar = $('#filtros-aplicados');
+	aplicar.html(' ');
+
+	//Alerta segmento
+	var segmento = $('#vehiculo_segmento_id').val();
+	if (segmento) {
+		var segmentoLabel = $('#vehiculo_segmento_id :selected').html();
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Vehículo:</strong> '+ segmentoLabel +' <button type="button" class="close" data-dismiss="alert"><i class="fa fa-trash-o"></i></button></p>');
+	}
+
+	//Alerta marca
+	var marca = $('#vehiculo_marca_id').val();
+	if (marca) {
+		var marcaLabel = $('#vehiculo_marca_id :selected').html();
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Marca:</strong> '+ marcaLabel +'</p>');
+	}
+
+	//Alerta precios
+	var precioMin = $('#precioMin').val();
+	var precioMax = $('#precioMax').val();
+	if ( precioMin || precioMax ) {
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Precio:</strong> '+ precioMin + ' - ' + precioMax + '</p>');
+	}
+
+	//Alerta condicion
+	var condicion = $('#vehiculo_condicion').val();
+	if (condicion) {
+		var condicionLabel = $('#vehiculo_condicion :selected').html();
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Condición:</strong> '+ condicionLabel +'</p>');
+	}
+
+	//Alerta combustible
+	var combustible = $('#vehiculo_combustible').val();
+	if (combustible) {
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Combustible:</strong> '+ combustible +'</p>');
+	}
+
+	//Alerta ubicacion
+	var ubicacion = $('#vehiculo_dpto_mendoza_id').val();
+	if (ubicacion) {
+		var ubicacionLabel = $('#vehiculo_dpto_mendoza_id :selected').html();
+		aplicar.append('<p class="alert alert-info" role="alert"><strong>Ubicación:</strong> '+ ubicacionLabel +'</p>');
+	}
+}
+
 $( document ).ready(function() {
+	filtros_aplicados();
+// Slider Precio
 	var precioMax_query = $('#precioMax_query').val();
 	var max_val;
-	
+	// seteo slider
 	if (precioMax_query) {
 		max_val = precioMax_query;
 	}else {
@@ -15,27 +63,44 @@ $( document ).ready(function() {
 		value: [0, max_val],
 		handle: 'square'
 	});
+
+	// inicilizar campos precio
+	var precioMin = $( "#precioMin" ).val();
+	var precioMax = $( "#precioMax" ).val();
+	if (precioMin || precioMax ){
+		$('.span2').slider('setValue', [precioMin,precioMax]);
+	}
+		
+// Eventos slier	
+	// seteo de campos al cambiar posicion del slider
 	$('.span2').slider().on('slideStop', function(ev){
 		var slide_val = $('.tooltip-inner').html();
 		var slide_array = slide_val.split(" : ");
 		$( "#precioMin" ).val( slide_array[0] );
 		$( "#precioMax" ).val( slide_array[1] );
+		$('#new_vehiculo').submit();
+	});
+	// seteo del slider al cambiar valores de los campos
+	$('.price-change').change(function(){
+		var precioMin = $( "#precioMin" ).val();
+		var precioMax = $( "#precioMax" ).val();
+		$('.span2').slider('setValue', [precioMin,precioMax]);
 	});
 
-	// Inicilizar Array de Equipamiento
-		var array_combustible = [];
-		var combustible = $('#vehiculo_combustible').val();
-		if (combustible) {
-			array_combustible = combustible.split(',');
-			$('.array_combustible').each(function(){
-				var input_init = $(this).val();
-				var exist_init = $.inArray(input_init, array_combustible);
-				if ( exist_init != -1) {
-					$(this).attr('checked', true);
-				}
-			});
-		}
-	// Eventos Equipamiento
+// Inicilizar Array de Comustible
+	var array_combustible = [];
+	var combustible = $('#vehiculo_combustible').val();
+	if (combustible) {
+		array_combustible = combustible.split(',');
+		$('.array_combustible').each(function(){
+			var input_init = $(this).val();
+			var exist_init = $.inArray(input_init, array_combustible);
+			if ( exist_init != -1) {
+				$(this).attr('checked', true);
+			}
+		});
+	}
+	// Eventos Combustible
 		$('.array_combustible').click(function (){
 			var input_val = $(this).val();
 			var exist = $.inArray(input_val, array_combustible);
@@ -49,8 +114,38 @@ $( document ).ready(function() {
 			$('#vehiculo_combustible').val(array_combustible);
 		});
 
-	$('#eliminar_todos').click(function(){
-		$('.form-control').val('');
+// MAEJO DEL FORMULARIO
+
+	// Submit al modificar campo
+	$('.form-control').change(function(){
 		$('#new_vehiculo').submit();
+	});
+	$('.array_combustible').change(function(){
+		$('#new_vehiculo').submit();
+	});
+
+	// Limpiar filtros
+	$('#eliminar_todos').click(function(){
+		$('.filter-input').val('');
+		$('#new_vehiculo').submit();
+	});
+
+	$('.close').click(function(){
+		$('#vehiculo_segmento_id').val('');
+		$('#new_vehiculo').submit();
+	});
+
+	// Toggle 
+	$('.header-ppal').click(function(){
+		$('#filtros_aplicados_contenido').slideToggle( "slow", function() {
+			$('.header-ppal .glyphicon-chevron-down').toggle();
+			$('.header-ppal .glyphicon-chevron-up').toggle();
+		});
+	});
+	$('.filters-header').click(function(){
+		$('#filtros_contenido').slideToggle( "slow", function() {
+			$('.filters-header .glyphicon-chevron-down').toggle();
+			$('.filters-header .glyphicon-chevron-up').toggle();
+		});
 	});
 });

@@ -17,9 +17,11 @@ class VehiculosController < ApplicationController
         @vehiculos = Vehiculo.where(segmento_id: @segmento)
       end
 
-      # paginar todos los vehiculos
-      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
-
+      # MARCA
+      @marca = params[:vehiculo][:marca_id]
+      unless @marca.blank?
+        @vehiculos = @vehiculos.where(marca_id: @marca)
+      end
       # PRECIO
       # obtener el valor maximo
       @max = @vehiculos.order(precio: :desc).first
@@ -31,6 +33,18 @@ class VehiculosController < ApplicationController
       @precioMax = params[:precioMax]
       unless @precioMin.blank? and @precioMax.blank?
         @vehiculos = @vehiculos.where(precio: (@precioMin.to_f)..(@precioMax.to_f))
+      end
+
+      # CONDICION
+      @condicion = params[:vehiculo][:condicion]
+      unless @condicion.blank?
+        @vehiculos = @vehiculos.where(condicion: @condicion)
+      end
+
+       # UBICACION
+      @ubicacion = params[:vehiculo][:dpto_mendoza_id]
+      unless @ubicacion.blank?
+        @vehiculos = @vehiculos.where(dpto_mendoza_id: @ubicacion)
       end
 
       #COMBUSTIBLE
@@ -47,6 +61,10 @@ class VehiculosController < ApplicationController
         end
         @vehiculos = @aux
       end
+
+      # paginar todos los vehiculos
+      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
+      
     else
       @vehiculos = Vehiculo.all
       @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
@@ -123,10 +141,10 @@ class VehiculosController < ApplicationController
 
     def set_vehiculo
       @vehiculo = Vehiculo.find(params[:id])
-      segmento = @vehiculo.segmento_id
-      @caracteristicas_equipamiento = Caracteristica.where(tipo: 'equipamiento', segmento_id: segmento)
-      @caracteristicas_seguridad = Caracteristica.where(tipo: 'seguridad', segmento_id: segmento)
-      @caracteristicas_exterior = Caracteristica.where(tipo: 'exterior', segmento_id: segmento)
+      @segmento = @vehiculo.segmento_id
+      @caracteristicas_equipamiento = Caracteristica.where(tipo: 'equipamiento', segmento_id: @segmento)
+      @caracteristicas_seguridad = Caracteristica.where(tipo: 'seguridad', segmento_id: @segmento)
+      @caracteristicas_exterior = Caracteristica.where(tipo: 'exterior', segmento_id: @segmento)
       @split_equipamiento = @vehiculo.equipamiento.split(",")
       @split_seguridad = @vehiculo.seguridad.split(",")
       @split_exterior = @vehiculo.exterior.split(",")

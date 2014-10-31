@@ -5,6 +5,9 @@
 	background-color: $blanco;
 	border: 1px solid $grisOscuro;
 	padding-bottom: 15px;
+	&:hover {
+		border: 1px solid $naranjaUp;
+	}
 	hr {
 		padding: 0;
 		margin: 0;
@@ -16,10 +19,10 @@
 		margin: 0;
 	}
 	.image {
-		height: 200px;
+		height: 125px;
 		background-color: $gris; 
 		img{
-			max-height: 200px;
+			max-height: 125px;
 			width: 100%;
 		}
 		div:first-child {
@@ -55,20 +58,36 @@
 				}
 			}
 	}
+	.titulo {
+		height: 50px;
+		overflow: hidden;
+		a {
+			font-size: 14px;
+			font-weight: bold;
+			display: block;
+			color: $grisOscuro;
+			text-decoration: none;
+			padding-top: 5px;
+			&:hover, &:active, &:focus {
+				color: $naranja;
+			}
+		}
+	}
 	.precio{
 		color: $naranja;
-		font-size: 18px;
+		font-size: 16px;
 		font-weight: bold;
 		.glyphicon {
+			font-size: 14px;
 			color: $grisOscuro;
 			margin-right: 5px;
 		}
 	}
 	.caracteristicas {
-		font-size: 16px;
+		font-size: 14px;
 		.glyphicon {
 			color: $naranja;
-			margin-left: 10px;
+			//margin-left: 10px;
 			margin-right: 5px;
 		}
 		.glyphicon:first-child {
@@ -78,38 +97,29 @@
 	}
 }
 
-/* Extra Small devices (mobiles, 320px and up) */
-@media (max-width: 360px) {
+// small
+@media (max-width: 767px) {
 	.product {
-		h4 {
-			font-size: 14px;
-			font-weight: bold;
-		}
-		.precio{
-			font-size: 14px;
-		}
-		.caracteristicas {
-			font-size: 12px;
+		.image {
+			height: 188px;
+			
+			img{
+				max-height: 188px;
+			}
+
 		}
 	}
 }
-
-@media (min-width: 360px) and (max-width: 768px) {
+//netbook y tablet
+@media (min-width: 768px) and (max-width: 1199px) {
 	.product {
-		h4 {
-			font-size: 16px;
-			font-weight: bold;
-		}
-		.precio{
-			font-size: 16px;
-		}
-		.caracteristicas {
-			font-size: 16px;
+		.image {
+			height: 140px;
+			
+			img{
+				max-height: 140px;
+			}
+
 		}
 	}
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-
 }

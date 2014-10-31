@@ -1,5 +1,8 @@
 @import "colors";
 
+.bg-gris {
+	background-color: $gris;
+}
 .filters-container {
 	background-color: $grisUp;
 	color: $grisOscuro;
@@ -7,50 +10,108 @@
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.filter {
-	background-color: $gris;
-	margin-bottom: 10px;
-	div:first-child {
-		padding-top: 0;
-		padding-bottom: 0;
-	}
-	div {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
+.order-filter {
+	margin-bottom: 15px;
+	//height: 54px;
+	padding-left: 10px;
+	padding-right: 10px;
+	// .form-control {
+	// 	width: 40%;
+	// 	position: absolute;
+	// 	right: 10px;
+	// }
+
 }
-.header-ppal {
+.header-ppal,.filters-header {
 	background-color: $azul;
 	color: $grisUp;
+	&:hover {
+		cursor: pointer;
+	}
 	h3 {
+		display: block;
 		margin-top: 10px;
 		font-size: 16px;
+		.glyphicon-ok-sign, .glyphicon-filter {
+			margin-right: 10px;
+		}
+		
 	}
-	.glyphicon {
-		margin-right: 10px;
+	.glyphicon-chevron-down, .glyphicon-chevron-up {
+			position: absolute;
+			right: 10px;
+			line-height: 40px;
 	}
+	.glyphicon-chevron-down {
+		display: none;
+	}
+}
+.filters-header {
+	background-color: $grisOscuro;
 }
 .filter-header {
-	background-color: $grisOscuro;
-	color: $grisUp;
+	border-top: 4px solid $naranja;
+	color: $grisOscuro;
+	margin-bottom: 10px;
 	h3 {
 		margin-top: 10px;
 		font-size: 16px;
 	}
-	.glyphicon {
-		margin-right: 10px;
+}
+.filter-content {
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 20px;
+	&:last-child {
+		padding-bottom: 20px;
+	}
+	.checkbox { // reseteo de los margenes de boots
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.form-group { // reseteo de los margenes de boots
+		margin-bottom: 0;
+	}
+	.alert { // estilo alertaas de boots en filtros aplicados
+		padding: 5px;
+		margin-bottom: 5px;
+		&:last-child {
+			margin-bottom: 10px;
+		}
 	}
 }
-.slider {
-	//width: 100%;
+.slider, .slider-horizontal {
+	max-width: 180px;
 	display: block;
 	margin: 0 auto;
+	margin-bottom: 10px;
 	.slider-handle {
 		background-color: $naranja;
 		background-image: none;
 	}
 }
-.alert{
-	padding: 5px;
-	margin-bottom: 5px;
+#filtros_contenido, #filtros_aplicados_contenido {
+	display: inline;
+}
+
+
+@media (max-width: 767px) {
+	.header-ppal,.filters-header {
+		.glyphicon-chevron-down {
+			display: inline;
+		}
+		.glyphicon-chevron-up {
+			display: none;
+		}
+	}
+	// .order-filter {
+	// 	.form-control {
+	// 		width: 100%;
+	// 		position: relative;
+	// 		right: 0;
+	// 	}
+	// }
+	#filtros_contenido, #filtros_aplicados_contenido {
+		display: none;
+	}
 }
