@@ -8,6 +8,7 @@ ActiveAdmin.register Vehiculo do
     column :titulo
     column :destacado
     column :principal
+    column :alta
     actions
   end
 

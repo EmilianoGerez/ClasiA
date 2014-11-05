@@ -10,38 +10,64 @@
 	background-size: cover;
 
 	.main-search {
-
-		.row {
-			padding-bottom: 20px;
-			h1{
+		h1{
+			color: $blanco;
+			text-shadow: 1px 1px 6px #000;
+			margin-bottom: 15px;
+			margin-left: -15px;
+		}
+		.busqueda {
+			background-color: rgba(41, 41, 41, 0.7);
+			padding: 15px;
+			box-shadow: 0 0 20px 0 ;
+			.btn-default {
+				background-color: $naranja;
 				color: $blanco;
-			}
-			.btn-group {
-				margin-top: -20px;
-				.btn{
-					font-family: sans-serif;
-					font-style: normal;
-					font-weight: normal;
-				}
-				.btn-lg{
-					height: 80px;
+				&:hover {
+					background-color: $naranjaUp;
 				}
 			}
-			&:first-child {
-				//padding-bottom: 10px;
-				padding-top: 10px;
+		}
+		.publicar {
+			background-color: rgba(41, 41, 41, 0.7);
+			padding-left: 15px;
+			margin-top: 15px;
+			box-shadow: 0 0 20px 0 ;
+			h5 {
+				color: $naranjaLight;
+				.glyphicon {
+					margin-right: 10px;
+				}
 			}
-
-			&:last-child {
-				padding-bottom: 30px;
+		}
+		.segmento {
+			.col-xs-2 {
+				padding: 0;
+				background-color: rgba(41, 41, 41, 0.85);
+				margin-bottom: 15px;
+				margin-left: 1px;
+				margin-right: 1px;
+				width: 16.4%;
+				&:first-child {
+					margin-left: 0;
+				}
+				&:last-child {
+					margin-right: 0;
+				}
+				&:hover {
+					background-color: rgba( 255, 153, 0, 0.7);
+				}
 			}
-
-			.bg-style {
-				background-color: rgba(41, 41, 41, 0.7);
-				border-radius: 8px 8px 8px 8px;
-				box-shadow: 0 0 20px 0 ;
+			a {
+				text-decoration: none;
+				display: block;
 			}
+			h4 {
+				color: $blanco;
+				padding: 15px;
+				text-shadow: 1px 1px 3px #000;
 			}
+		}
 	}		
 }
 

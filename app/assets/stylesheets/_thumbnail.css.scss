@@ -6,7 +6,7 @@
 	border: 1px solid $grisOscuro;
 	padding-bottom: 15px;
 	&:hover {
-		border: 1px solid $naranjaUp;
+		border: 1px solid $naranjaLight;
 	}
 	hr {
 		padding: 0;
@@ -46,14 +46,20 @@
 			.agencia {
 				background-color: $naranja;
 				height: 18px;
-				font-size: 14px;
-				font-weight: bold;
 				a {
 					display: block;
 					color: $blanco;
 					text-decoration: none;
 					&:hover, &:active, &:focus {
 						color: $grisOscuro;
+					}
+					h5 {
+						margin-top: 0;
+						margin-bottom: 0;
+						line-height: 18px;
+						.glyphicon {
+							font-size: 12px;
+						}
 					}
 				}
 			}
@@ -69,7 +75,12 @@
 			text-decoration: none;
 			padding-top: 5px;
 			&:hover, &:active, &:focus {
-				color: $naranja;
+				color: $azul;
+			}
+			.glyphicon {
+				color: $azul;
+				font-size: 12px;
+				margin-left: 5px;
 			}
 		}
 	}
@@ -93,6 +104,19 @@
 		.glyphicon:first-child {
 			margin-left: 0px;
 			margin-right: 5px;
+		}
+	}
+	.principal {
+		height: 40px;
+		width: 40px;
+		position: absolute;
+		right: 16px;
+		bottom: 16px;
+		font-size: 35px;
+		color: $grisUp;
+		line-height: 40px;
+		.glyphicon-star {
+
 		}
 	}
 }

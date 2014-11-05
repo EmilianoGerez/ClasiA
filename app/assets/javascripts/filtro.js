@@ -61,7 +61,8 @@ $( document ).ready(function() {
 		max: max_val,
 		step: 100,
 		value: [0, max_val],
-		handle: 'square'
+		handle: 'square',
+		tooltip: false
 	});
 
 	// inicilizar campos precio
@@ -70,6 +71,7 @@ $( document ).ready(function() {
 	if (precioMin || precioMax ){
 		$('.span2').slider('setValue', [precioMin,precioMax]);
 	}
+	$('.precio-label').html($('.tooltip-inner').html());
 		
 // Eventos slier	
 	// seteo de campos al cambiar posicion del slider
@@ -79,6 +81,10 @@ $( document ).ready(function() {
 		$( "#precioMin" ).val( slide_array[0] );
 		$( "#precioMax" ).val( slide_array[1] );
 		$('#new_vehiculo').submit();
+	});
+	// tooltip
+	$('.span2').slider().on('slide', function(ev){
+		$('.precio-label').html($('.tooltip-inner').html());
 	});
 	// seteo del slider al cambiar valores de los campos
 	$('.price-change').change(function(){

@@ -5,16 +5,16 @@ class VehiculosController < ApplicationController
   # GET /vehiculos.json
   def index
     
-
     if params[:vehiculo]
       @vehiculo = Vehiculo.new(vehiculo_params)
+      @vehiculos_principal = Vehiculo.where(principal: true, alta: true)
 
       # obtener el paramtero segmento y filtrar la busqueda
-      @segmento = params[:vehiculo]['segmento_id']
+      @segmento = params[:vehiculo][:segmento_id]
       if @segmento.blank?
-        @vehiculos = Vehiculo.all
+        @vehiculos = Vehiculo.where(principal: false, alta: true)
       else
-        @vehiculos = Vehiculo.where(segmento_id: @segmento)
+        @vehiculos = Vehiculo.where(segmento_id: @segmento, principal: false, alta: true)
       end
 
       # MARCA
@@ -47,6 +47,20 @@ class VehiculosController < ApplicationController
         @vehiculos = @vehiculos.where(dpto_mendoza_id: @ubicacion)
       end
 
+      #OREDNAMIENTO
+      case params[:vehiculo][:equipamiento]
+      when 'Destacados'    #compare to 1
+        @vehiculos = @vehiculos.order(principal: :desc, destacado: :desc, created_at: :desc)
+      when 'Ultimos Publicados'    #compare to 2
+        @vehiculos = @vehiculos.order(principal: :desc, created_at: :desc)
+      when 'Precio menor a mayor'
+        @vehiculos = @vehiculos.order(principal: :desc, precio: :asc, created_at: :desc)
+      when 'Precio mayor a menor'
+        @vehiculos = @vehiculos.order(principal: :desc, precio: :desc, created_at: :desc)
+      else
+         @vehiculos = @vehiculos.order(principal: :desc, destacado: :desc, created_at: :desc)
+      end
+
       #COMBUSTIBLE
       @combustible = params[:vehiculo][:combustible]
       unless @combustible.blank?
@@ -63,22 +77,36 @@ class VehiculosController < ApplicationController
       end
 
       # paginar todos los vehiculos
-      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
-      
+      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 24)
+      # antidad de vehiculos
+      @cantidad = @vehiculos.length
+      @cantidad_oferta = @vehiculos_principal.length
     else
-      @vehiculos = Vehiculo.all
-      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 4)
+  # SI NO HAY PARAMETROS
+      @vehiculos = Vehiculo.where(principal: false, alta: true)
+      @vehiculos_principal = Vehiculo.where(principal: true, alta: true)
       # obtener el valor maximo
       @max = @vehiculos.order(precio: :desc).first
       unless @max.blank?
         params[:precioMax_query] = @max.precio
       end
+      
+      #OREDNAMIENTO
+      @vehiculos = @vehiculos.order(principal: :desc, destacado: :desc, created_at: :desc)
+
+      # paginar todos los vehiculos
+      @vehiculos = @vehiculos.paginate(:page => params[:page], :per_page => 24)
+      # antidad de vehiculos
+      @cantidad = @vehiculos.length
+      @cantidad_oferta = @vehiculos_principal.length
     end
   end
 
   # GET /vehiculos/1
   # GET /vehiculos/1.json
   def show
+    @foto = ['dummy']
+    @foto = @foto + Foto.where(vehiculo_id: @vehiculo.id)
   end
 
   # GET /vehiculos/new

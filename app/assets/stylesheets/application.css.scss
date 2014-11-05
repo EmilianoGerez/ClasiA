@@ -25,10 +25,13 @@
 @import "jquery.bxslider";
 @import "slider";
 @import "filtros";
+@import "vehiculo_show";
 
 /////////////////////////////////////////////////////////////////////
 /////////////GENERALES
-
+body {
+	background-color: $gris;
+}
 .h-padding {
 	padding: 20px;
 }
@@ -41,4 +44,8 @@ background-color: $blanco;
 	margin-top: 30px;
 	margin-bottom: 30px;
 	padding-bottom: 30px;
+}
+
+a:focus {
+	outline: none;
 }

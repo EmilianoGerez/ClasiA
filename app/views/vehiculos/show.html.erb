@@ -1,109 +1,194 @@
 <p id="notice"><%= notice %></p>
+<div class="container margin-container">
+  <!-- Breadcrum / Social -->
+  <div class="bread-social">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-md-8">
+        <ol class="breadcrumb">
+          <li><a href="<%= vehiculos_path %>">Vehículos</a></li>
+          <li><a href="<%= vehiculos_path() %>?vehiculo[segmento_id]=<%= @vehiculo.segmento_id %>"><%= @vehiculo.segmento.nombre %></a></li>
+          <li class="active"><%= @vehiculo.titulo %></li>
+        </ol>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-4 share">
+        <h5>
+          <small>Compartir</small><span>|</span>
+          <a href=""><i class="fa fa-facebook"></i></a>
+          <a href=""><i class="fa fa-twitter"></i></a>
+          <a href=""><i class="fa fa-google-plus"></i></a>
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- ENCABEZADO -->
+    <div class="col-xs-12">
+      <div class="header-vehiculo">
+        <div class="row">
+          <div class="col-xs-12 col-md-8 titulo">
+            <h2><%= @vehiculo.titulo %>
+              <span class="visible-xs visible-sm"><hr>$ <%= @vehiculo.precio %></span>
+            </h2>
+          </div>
+          <div class="col-xs-12 col-md-4 precio hidden-xs hidden-sm">
+                <h2>$ <%= @vehiculo.precio %></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- FOTOS -->
+    <div class="col-xs-12 col-md-8">
+      <ul class="bxslider">
+        <li><%= image_tag @vehiculo.foto_ppal.url %></li>
+        <% @foto.each_with_index do |foto, index| %>
+          <%  if index != 0 %>
+            <li><%= image_tag foto.imagen.url %></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <!-- thumbs -->
+      <div class="row hidden-xs">
+        <div class="col-xs-12">
+          <div id="bx-pager">
+            <table class="table">
+              <tr>
+                <td><a data-slide-index="0" href=""><%= image_tag @vehiculo.foto_ppal.url(:thumb) %></a></td>
+                <% @foto.each_with_index do |t, index| %>
+                  <%  if index != 0 %>
+                    <td><a data-slide-index="<%= index %>" href=""><%= image_tag t.imagen.url(:thumb) %></a></td>
+                  <% end %>
+                <% end %>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Datos vendedor -->
+    <div class="col-xs-12 col-md-4 datos datos-vendedor">
+      <h3>Datos Vendedor</h3>
+      <div class="bg-white datos-contenido">
+        <table class="table">
+          <tr>
+            <td><span class="glyphicon glyphicon-briefcase"></span></td>
+            <td><%= @vehiculo.segmento.nombre %></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-map-marker"></span></td>
+            <td><%= @vehiculo.dpto_mendoza.nombre %></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-phone-alt"></span></td>
+            <td><span class="tel hidden"></span><button class="btn btn-default btn-xs">Ver Número</button></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-envelope"></span></td>
+            <td><span class="email hidden"></span><button class="btn btn-default btn-xs">Ver Email</button></td>
+          </tr>
+          <tr>
+            <td><span class="glyphicon glyphicon-home"></span></td>
+            <td><%= @vehiculo.combustible %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Enviar consulta -->
+    <div class="col-xs-12 col-md-4 datos datos-consulta">
+      <div class="datos-contenido">
+        <legend>Enviar consulta</legend>
+      </div>
+    </div>
+  </div>
+<!-- SECCION DATOS -->
+  <div class="row">
+    <!-- Datos -->
+    <div class="col-xs-12 col-md-push-8 col-md-4 datos datos-vehiculo">
+      <h3>Datos Vehículo</h3>
+      <div class="bg-white datos-contenido">
+        <table class="table">
+          <tr>
+            <td><strong>Segmento:</strong></td>
+            <td><%= @vehiculo.segmento.nombre %></td>
+          </tr>
+          <tr>
+            <td><strong>Ubicación:</strong></td>
+            <td><%= @vehiculo.dpto_mendoza.nombre %></td>
+          </tr>
+          <tr>
+            <td><strong>Condición:</strong></td>
+            <td><%= @vehiculo.condicion %></td>
+          </tr>
+          <tr>
+            <td><strong>Año:</strong></td>
+            <td><%= @vehiculo.anio %></td>
+          </tr>
+          <tr>
+            <td><strong>Combustible:</strong></td>
+            <td><%= @vehiculo.combustible %></td>
+          </tr>
+          <tr>
+            <td><strong>Kilometraje:</strong></td>
+            <td><%= @vehiculo.kilometraje %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Caracteristicas -->
+    <div class="col-xs-12 col-md-pull-4 col-md-8 caracteristicas">
+      <div class="row">
+        <div id="header_equipamiento" class="col-xs-4 activo"><a class="btn btn-lg">Equipamiento</a></div>
 
-<p>
-  <strong>Usuario:</strong>
-  <%= @vehiculo.usuario %>
-</p>
+        <div id="header_seguridad" class="col-xs-4"><a class="btn btn-lg">Seguridad</a></div>
 
-<p>
-  <strong>Agencia:</strong>
-  <%= @vehiculo.agencia %>
-</p>
+        <div id="header_exterior" class="col-xs-4"><a class="btn btn-lg">Exterior</a></div>
+      </div>
+      <div class="row">
+        <div id="body_equipamiento" class="col-xs-12 activo">
+          <% if @split_equipamiento.blank? %>
+            <h5>No contiene carácteristicas de equipamiento</h5>
+          <% end %>
+          <ul class="list-group text-left">
+            <% @split_equipamiento.each do |e| %>
+                <li class="list-group-item"><%= e %></li>
+            <% end %>
+          </ul>
+        </div>
 
-<p>
-  <strong>Segmento:</strong>
-  <%= @vehiculo.segmento %>
-</p>
+        <div id="body_seguridad" class="col-xs-12 activo">
+          <% if @split_seguridad.blank? %>
+            <h5>No contiene carácteristicas de seguridad</h5>
+          <% end %>
+          <ul class="list-group text-left">
+            <% @split_seguridad.each do |e| %>
+                <li class="list-group-item"><%= e %></li>
+            <% end %>
+          </ul>
+        </div>
 
-<p>
-  <strong>Dpto mendoza:</strong>
-  <%= @vehiculo.dpto_mendoza %>
-</p>
+        <div id="body_exterior" class="col-xs-12 activo">
+          <% if @split_exterior.blank? %>
+            <h5>No contiene carácteristicas de exterior</h5>
+          <% end %>
+          <ul class="list-group text-left">
+            <% @split_exterior.each do |e| %>
+                <li class="list-group-item"><%= e %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Comentario -->
+      <div class="col-xs-12 col-md-pull-4 col-md-8 datos-comentario">
+        <div class="bg-white">
+          <div class="panel panel-default">
+            <div class="panel-heading">Comentario del Vendedor</div>
+            <div class="panel-body">
+              <p>ssadasdad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
 
-<p>
-  <strong>Marca:</strong>
-  <%= @vehiculo.marca %>
-</p>
-
-<p>
-  <strong>Modelo:</strong>
-  <%= @vehiculo.modelo %>
-</p>
-
-<p>
-  <strong>Modelocustom:</strong>
-  <%= @vehiculo.modeloCustom %>
-</p>
-
-<p>
-  <strong>Titulo:</strong>
-  <%= @vehiculo.titulo %>
-</p>
-
-<p>
-  <strong>Anio:</strong>
-  <%= @vehiculo.anio %>
-</p>
-
-<p>
-  <strong>Kilometraje:</strong>
-  <%= @vehiculo.kilometraje %>
-</p>
-
-<p>
-  <strong>Combustible:</strong>
-  <%= @vehiculo.combustible %>
-</p>
-
-<p>
-  <strong>Precio:</strong>
-  <%= @vehiculo.precio %>
-</p>
-
-<p>
-  <strong>Condicion:</strong>
-  <%= @vehiculo.condicion %>
-</p>
-
-<p>
-  <strong>Comentario:</strong>
-  <%= @vehiculo.comentario %>
-</p>
-
-<p>
-  <strong>Destacado:</strong>
-  <%= @vehiculo.destacado %>
-</p>
-
-<p>
-  <strong>Principal:</strong>
-  <%= @vehiculo.principal %>
-</p>
-
-<p>
-  <strong>Denunciado:</strong>
-  <%= @vehiculo.denunciado %>
-</p>
-
-<p>
-  <strong>Alta:</strong>
-  <%= @vehiculo.alta %>
-</p>
-
-<p>
-  <strong>Equipamiento:</strong>
-  <%= @vehiculo.equipamiento %>
-</p>
-
-<p>
-  <strong>Seguridad:</strong>
-  <%= @vehiculo.seguridad %>
-</p>
-
-<p>
-  <strong>Exterior:</strong>
-  <%= @vehiculo.exterior %>
-</p>
-
-<%= link_to 'Edit', edit_vehiculo_path(@vehiculo) %> |
-<%= link_to 'Back', vehiculos_path %>
+<%= javascript_include_tag 'vehiculo_show', 'data-turbolinks-track' => true %>
