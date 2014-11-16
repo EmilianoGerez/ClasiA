@@ -90,7 +90,23 @@ $( document ).ready(function() {
 	$('.price-change').change(function(){
 		var precioMin = $( "#precioMin" ).val();
 		var precioMax = $( "#precioMax" ).val();
-		$('.span2').slider('setValue', [precioMin,precioMax]);
+		var slide_val = $('.tooltip-inner').html();
+		var slide_array = slide_val.split(" : ");
+		if ( precioMax == "" ){
+			$( "#precioMax" ).val(slide_array[1]);
+			precioMax = slide_array[1];
+		}
+		if ( precioMin == "" ){
+			$( "#precioMin" ).val(slide_array[0]);
+			precioMin = slide_array[0];
+		}
+		// validar numerico
+		if ( $.isNumeric(precioMin) && $.isNumeric(precioMax) ){
+			$('.span2').slider('setValue', [precioMin,precioMax]);
+		}else{
+			$( "#precioMin" ).val("");
+			$( "#precioMax" ).val("");
+		}
 	});
 
 // Inicilizar Array de Comustible
@@ -130,9 +146,36 @@ $( document ).ready(function() {
 		$('#new_vehiculo').submit();
 	});
 
+	// spinner en submit
+	$('#new_vehiculo').submit(function(){
+		$('input').prop( "disabled", true );
+		$('select').prop( "disabled", true );
+		spinner();
+	});
+
 	// Limpiar filtros
 	$('#eliminar_todos').click(function(){
 		$('.filter-input').val('');
+		$('#new_vehiculo').submit();
+	});
+
+	$('.eliminar').click(function(){
+		var input = $(this).parent().parent().next().find('.form-control');
+		input.val('');
+		$('#new_vehiculo').submit();
+	});
+
+	$('.eliminar-precio').click(function(){
+		$('#precioMin').val('');
+		$('#precioMax').val('');
+		$('#new_vehiculo').submit();
+	});
+
+	$('.eliminar-combustible').click(function(){
+		$('.array_combustible').each(function(){
+			$(this).attr('checked', false);
+		});
+		$('#vehiculo_combustible').val('');
 		$('#new_vehiculo').submit();
 	});
 
@@ -155,3 +198,26 @@ $( document ).ready(function() {
 		});
 	});
 });
+
+function spinner (){
+	// SPINNER
+	var opts = {
+		lines: 13, // The number of lines to draw
+		length: 20, // The length of each line
+		width: 5, // The line thickness
+		radius: 30, // The radius of the inner circle
+		corners: 1, // Corner roundness (0..1)
+		rotate: 0, // The rotation offset
+		direction: 1, // 1: clockwise, -1: counterclockwise
+		color: '#000', // #rgb or #rrggbb or array of colors
+		speed: 1, // Rounds per second
+		trail: 60, // Afterglow percentage
+		shadow: false, // Whether to render a shadow
+		hwaccel: false, // Whether to use hardware acceleration
+		className: 'spinner', // The CSS class to assign to the spinner
+		zIndex: 2e9, // The z-index (defaults to 2000000000)
+		top: '50%', // Top position relative to parent
+		left: '50%' // Left position relative to parent
+	};
+	$('#cargando').after(new Spinner(opts).spin().el);
+}

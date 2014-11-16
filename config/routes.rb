@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'usuarios/publicaciones' => 'usuarios#publicaciones'
+
   resources :vehiculos
 
   devise_for :admin_users, ActiveAdmin::Devise.config

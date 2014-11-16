@@ -1,0 +1,56 @@
+<div class="container margin-container">
+	<div class="row">
+		<div class="col-xs-12 col-md-offset-1 col-md-10">
+			<div class="alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+			  <strong>Importante!</strong> Tienes <strong><%= @cant_total %></strong> publicaciones vigentes, te quedan <strong>0</strong> publicaciones nuevas. Recuerda que tienes un limite de <strong>5</strong> publicaciones bimestrales.
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-3">
+			<div class="row">
+				<div class="col-xs-12 publi-header">
+					<h3>Publicaciones</h3>
+				</div>
+				<div class="publi-container bg-white">
+					<div class="col-xs-12">
+						<div class="list-group">
+						  <a href="<%=usuarios_publicaciones_path%>" class="list-group-item <%= 'active' if @segmento.blank? %>">
+						    Todas <span class="badge"><%= @cant_total %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>1)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=1') %>">
+						    Autos <span class="badge"><%= @cant_autos %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>2)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=2') %>">
+						    Camionetas <span class="badge"><%= @cant_camionetas %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>3)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=3') %>">
+						    Camiones <span class="badge"><%= @cant_camiones %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>4)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=4') %>">
+						    Motos <span class="badge"><%= @cant_motos %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>5)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=5') %>">
+						    Náutica <span class="badge"><%= @cant_nautica %></span>
+						  </a>
+						  <a href="<%=usuarios_publicaciones_path(:segmento=>6)%>" class="list-group-item <%= 'active' if current_page?('/usuarios/publicaciones?segmento=6') %>">
+						    Otros <span class="badge"><%= @cant_otros %></span>
+						  </a>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<a href=" <%= new_vehiculo_path %> " class="btn btn-default btn-block btn-lg">Publicar Vehículo</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-9">
+			<div class="row">
+				<%= render 'vehiculos/vehiculo_thumb' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<%= stylesheet_link_tag    'mis_publicaciones', media: 'all', 'data-turbolinks-track' => true %>

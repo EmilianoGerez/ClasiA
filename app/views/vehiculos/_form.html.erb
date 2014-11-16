@@ -1,5 +1,6 @@
-<div class="container margin-container bg-white">
-
+<div class="container form-container margin-container bg-white">
+  <div class="mascara-container"></div>
+  <div id="cargando"></div>
   <div class="row header-form">
     <div class="col-xs-push-1 col-xs-10 text-center">
       <h2 class="h-padding">Publicar Vehículo</h2>
@@ -10,11 +11,10 @@
 
     
     <div class="col-xs-12 col-md-offset-2 col-md-8">
-      <legend id='titulo_paso'>Datos del Vehículo</legend>
       <% if @vehiculo.errors.any? %>
         <div class="alert alert-danger alert-dismissable">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <h2><%= pluralize(@vehiculo.errors.count, "error") %> prohibited this vehiculo from being saved:</h2>
+          <h2><%= pluralize(@vehiculo.errors.count, "error") %> este vehículo no puede ser creado:</h2>
 
           <ul>
           <% @vehiculo.errors.full_messages.each do |message| %>
@@ -24,9 +24,13 @@
         </div>
       <% end %>
     </div>
-
+<!-- PASO 0 -->
+    <div id="paso0">
+    <div class="col-xs-12 col-md-offset-2 col-md-8">
+      <legend>Tipo de Publicación</legend>
+    </div>
     <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
-      <div id="paso1">
+      
 
         <!-- CAPTURA USUARIO Y COPIA CON JQUERY -->
         <% if !@vehiculo.id %>
@@ -34,13 +38,25 @@
             <%= f.input :usuario_id, as: :hidden %>
             <input class="numeric integer optional disabled form-control hidden" id="usuario_id" type="number" value="<%= current_usuario.id %>">
           </div>
+          <div class="row segmento">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label>Segmento</label>
+                <%= f.association  :segmento, label_method: :nombre, value_method: :id, include_blank: 'Qué deseas publicar?' %>
+              </div>
+            </div>
+          </div>
         <% end %>
 
-        <!-- SEGMENTO ESCONDIDO / SETEADO URL JQUERY -->
-        <div class="form-group">
-          <%= f.association  :segmento, label_method: :nombre, value_method: :id, as: :hidden %>
-        </div>
-
+      </div>
+    </div>
+<!-- PASO 1 -->
+    <div class="col-xs-12 col-md-offset-2 col-md-8">
+      <legend id='titulo_paso'>Datos del Vehículo</legend>
+    </div>
+    <div class="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">
+      <div id="paso1">
+        
         <div class="form-group">
           <label>Ubicacion</label>
           <%= f.association  :dpto_mendoza, label_method: :nombre, value_method: :id %>
@@ -107,7 +123,7 @@
           </fieldset>
         </div>
       </div>
-
+<!-- PASO 2 -->
       <div id="paso2">
   
         <%= render 'caracteristicas'  %>
@@ -127,7 +143,7 @@
         </div>
 
       </div>
-
+<!-- PASO 3 -->
       <div id="paso3">
         <!-- FOTO PPAL -->
         <fieldset class="">
@@ -159,6 +175,7 @@
       <!-- BOTONES -->
       <hr>
       <div class="form-group">
+          <button type='submit' id='continuar_paso0' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
           <button type='submit' id='continuar_paso1' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
           <a id='volver_paso1' class='btn btn-default'>Paso 1</a>
           <button type='submit' id='continuar_paso2' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>

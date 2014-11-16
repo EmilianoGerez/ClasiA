@@ -1,72 +1,124 @@
-<% @vehiculos_principal.each do |v| %>
+<% @vehiculos_principal.each do |vehiculo| %>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
+          <!-- Botones de acciones para el usuario -->
+          <% if current_page?( usuarios_publicaciones_path ) %>
+              <div class="row acciones">
+                <div class="col-xs-6"><%= link_to 'Editar', edit_vehiculo_path(vehiculo), class: 'btn btn-primary' %></div>
+                <div class="col-xs-6"><%= link_to 'Eliminar', vehiculo, method: :delete, data: { confirm: 'Estas seguro de eliminarlo?' }, class: 'btn btn-danger' %></div>
+              </div>
+          <% end %>
           <div class="product">
               <div class="row">
+                <div class="<%= "agencia-datos" if vehiculo.agencia %>">
+                  <% if vehiculo.agencia %>
+                    <div class="datos text-center">
+                      <h5><%= vehiculo.agencia.nombre %></h5>
+                      <p><span class="glyphicon glyphicon-phone-alt"></span><%= vehiculo.agencia.telefono %></p>
+                      <p><span class="glyphicon glyphicon-envelope"></span><%= vehiculo.agencia.email %></p>
+                      <a href="" class="btn"><span class="glyphicon glyphicon-home"></span>ver sitio</a>
+                    </div>
+                  <% end %>
                 <div class="image">
-                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                      <%= image_tag v.foto_ppal.url(:medium) %>
-                    </div>
-                    </div>
-              </div>
-              <div class="row usuario">
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                  <div class="agencia">
-                    <a href="" ><h5>PENACCHIO</h5></a>
+                  <div class="col-xs-12 col-sm-12 col-md-12 ">
+                      <%= image_tag vehiculo.foto_ppal.url(:medium) %>
                   </div>
                 </div>
+                <div class="usuario">
+                  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <% if vehiculo.agencia %>
+                      <div class="tipo-publi <%="destacado-publi" if vehiculo.destacado%><%="principal-publi" if vehiculo.principal%>">
+                        <h5><%= vehiculo.agencia.nombre %></h5>
+                      </div>
+                    <% else %>
+                      <div class="tipo-publi <%="destacado-publi" if vehiculo.destacado%> <%="principal-publi" if vehiculo.principal%>">
+                        <h5>Particular</h5>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 titulo">
-                      <a href="<%= vehiculo_path(v) %>"><%= v.titulo %><span class="glyphicon glyphicon-chevron-right"></span></a>
+                      <a href="<%= vehiculo_path(vehiculo) %>"><%= vehiculo.titulo %></a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 precio">
-                      <p><span class="glyphicon glyphicon-usd"></span><span><%= v.precio %></span></p>
+                      <p><span class="glyphicon glyphicon-usd"></span><span><%= vehiculo.precio %></span></p>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 caracteristicas">
                   <hr>
-                    <p><span class="glyphicon glyphicon-map-marker"></span><%= v.dpto_mendoza.nombre %>, Mza</p>
-                    <p><span class="glyphicon glyphicon-calendar"></span><%= v.condicion %> | <%= v.anio %></p>
-                    <p><span class="glyphicon glyphicon-dashboard"></span><%= v.combustible %></p>
+                    <p><span class="glyphicon glyphicon-map-marker"></span><%= vehiculo.dpto_mendoza.nombre %>, Mza</p>
+                    <p><span class="glyphicon glyphicon-calendar"></span><%= vehiculo.condicion %> | <%= vehiculo.anio %></p>
+                    <p><span class="glyphicon glyphicon-dashboard"></span><%= vehiculo.combustible %></p>
                 </div>
               </div>
               <!-- Determinar si es principal -->
-              <% if v.principal %>
-                <div class="principal text-center"><i class="fa fa-thumb-tack"></i></div>
-              <% end %>
+              <div class="icon-tipo text-center">
+                <span class="glyphicon glyphicon-fire icon-principal"></span>
+              </div>
           </div>
         </div>
 <% end %>
-<% @vehiculos.each do |v| %>
+<% @vehiculos.each do |vehiculo| %>
         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
-          <div class="product">
-              <div class="row">
-                <div class="image">
-                <div class="col-xs-12 col-sm-12 col-md-12 ">
-                      <%= image_tag v.foto_ppal.url(:medium) %>
-                    </div>
-                    </div>
+          <!-- Botones de acciones para el usuario -->
+          <% if current_page?( usuarios_publicaciones_path ) %>
+              <div class="row acciones">
+                <div class="col-xs-6"><%= link_to 'Editar', edit_vehiculo_path(vehiculo), class: 'btn btn-primary' %></div>
+                <div class="col-xs-6"><%= link_to 'Eliminar', vehiculo, method: :delete, data: { confirm: 'Estas seguro de eliminarlo?' }, class: 'btn btn-danger' %></div>
               </div>
-              <div class="row usuario">
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                  <div class="agencia">
-                    <a href="" ><h5>PENACCHIO</h5></a>
+          <% end %>
+          <div class="product">
+            <div class="row">
+              <div class="<%= "agencia-datos" if vehiculo.agencia %>">
+                  <% if vehiculo.agencia %>
+                    <div class="datos text-center">
+                      <h5><%= vehiculo.agencia.nombre %></h5>
+                      <p><span class="glyphicon glyphicon-phone-alt"></span><%= vehiculo.agencia.telefono %></p>
+                      <p><span class="glyphicon glyphicon-envelope"></span><%= vehiculo.agencia.email %></p>
+                      <a href="" class="btn"><span class="glyphicon glyphicon-home"></span>ver sitio</a>
+                    </div>
+                  <% end %>
+                <div class="image">
+                  <div class="col-xs-12 col-sm-12 col-md-12 ">
+                      <%= image_tag vehiculo.foto_ppal.url(:medium) %>
                   </div>
                 </div>
+                <div class="usuario">
+                  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <% if vehiculo.agencia %>
+                      <div class="tipo-publi <%="destacado-publi" if vehiculo.destacado%>">
+                        <a href="" ><h5><%= vehiculo.agencia.nombre %></h5></a>
+                      </div>
+                    <% else %>
+                      <div class="tipo-publi <%="destacado-publi" if vehiculo.destacado%>">
+                        <h5>Particular</h5>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 titulo">
-                      <a href="<%= vehiculo_path(v) %>"><%= v.titulo %><span class="glyphicon glyphicon-chevron-right"></span></a>
+                      <a href="<%= vehiculo_path(vehiculo) %>"><%= vehiculo.titulo %></a>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 precio">
-                      <p><span class="glyphicon glyphicon-usd"></span><span><%= v.precio %></span></p>
+                      <p><span class="glyphicon glyphicon-usd"></span><span><%= vehiculo.precio %></span></p>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 caracteristicas">
                   <hr>
-                    <p><span class="glyphicon glyphicon-map-marker"></span><%= v.dpto_mendoza.nombre %>, Mza</p>
-                    <p><span class="glyphicon glyphicon-calendar"></span><%= v.condicion %> | <%= v.anio %></p>
-                    <p><span class="glyphicon glyphicon-dashboard"></span><%= v.combustible %></p>
+                    <p><span class="glyphicon glyphicon-map-marker"></span><%= vehiculo.dpto_mendoza.nombre %>, Mza</p>
+                    <p><span class="glyphicon glyphicon-calendar"></span><%= vehiculo.condicion %> | <%= vehiculo.anio %></p>
+                    <p><span class="glyphicon glyphicon-dashboard"></span><%= vehiculo.combustible %></p>
                 </div>
-              </div>
+            </div>
               <!-- Determinar si es principal -->
-              <% if v.principal %>
-                <div class="principal text-center"><i class="fa fa-thumb-tack"></i></div>
-              <% end %>
+              <div class="icon-tipo text-center">
+                <% if vehiculo.destacado %>
+                  <i class="fa fa-thumb-tack"></i>
+                <% end %>
+              </div>
           </div>
         </div>
 <% end %>

@@ -29,23 +29,43 @@
 
 /////////////////////////////////////////////////////////////////////
 /////////////GENERALES
-body {
-	background-color: $gris;
-}
-.h-padding {
-	padding: 20px;
-}
 
-.bg-white {
-background-color: $blanco;
-}
+// disposicion de tablay filas para alinear el contenido
+// estilo del footer se en encuentra en _navbar
+	html,body { 
+	  	height: 100%;
+		margin: 0; 
+	  	padding: 0; 
+	}
+	body {
+		display: table;
+		width: 100%;
+	}
+	#page-wrapper {
+		min-height: 100%;
+		width: 100%;
+		display: table-row;
+	}
+	footer {
+		height: 150px;
+		width: 100%;
+		display: table-row;
+	}
 
-.margin-container {
-	margin-top: 30px;
-	margin-bottom: 30px;
-	padding-bottom: 30px;
-}
+// estilos generales de la web
+	.h-padding {
+		padding: 20px;
+	}
 
-a:focus {
-	outline: none;
-}
+	.bg-white {
+	background-color: $blanco;
+	}
+
+	.margin-container {
+		margin-top: 30px;
+		margin-bottom: 30px;
+		padding-bottom: 30px;
+	}
+	a:focus {
+		outline: none;
+	}

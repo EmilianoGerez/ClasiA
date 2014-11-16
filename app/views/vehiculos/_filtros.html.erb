@@ -31,7 +31,7 @@
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Tipo de vehículo</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Tipo de vehículo<i class="fa fa-trash-o pull-right eliminar"></i></h3>
             </div>
             <div class="col-xs-12">
                 <%= f.association :segmento, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todos', input_html: { class: 'form-control' } %>
@@ -44,7 +44,7 @@
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row filter">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Marca</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Marca<i class="fa fa-trash-o pull-right eliminar"></i></h3>
             </div>
             <div class="col-xs-12">
               <%= f.association :marca, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>
@@ -52,11 +52,11 @@
           </div>
         </div>
 
-        <!-- PECIO -->
+        <!-- PRECIO -->
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row filter">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Precio</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Precio<i class="fa fa-trash-o pull-right eliminar-precio"></i></h3>
             </div>
             <div class="col-xs-12">
               <p class="precio-label text-center"></p>
@@ -83,7 +83,7 @@
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row filter">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Condición</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Condición<i class="fa fa-trash-o pull-right eliminar"></i></h3>
             </div>
             <div class="col-xs-12">
               <%= f.input :condicion, as: :select, collection: ['Nuevo | 0km', 'Usado'], prompt: 'Todas' %>
@@ -95,7 +95,7 @@
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row filter">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Combustible</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Combustible<i class="fa fa-trash-o pull-right eliminar-combustible"></i></h3>
             </div>
             <div class="col-xs-12">
               <div class="checkbox">
@@ -121,7 +121,7 @@
         <div class="col-xs-12 col-sm-6 col-md-12 filter-content">
           <div class="row filter">
             <div class="col-xs-12 filter-header">
-              <h3><i class="fa fa-check"></i>&nbsp;Ubicación</h3>
+              <h3><i class="fa fa-check"></i>&nbsp;Ubicación<i class="fa fa-trash-o pull-right eliminar"></i></h3>
             </div>
             <div class="col-xs-12">
               <%= f.association :dpto_mendoza, as: :select, label_method: :nombre, value_method: :id, prompt: 'Todas' %>

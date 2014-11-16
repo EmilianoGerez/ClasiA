@@ -44,12 +44,16 @@
 	background-color: $grisOscuro;
 }
 .filter-header {
-	border-top: 4px solid $naranja;
+	border-top: 4px solid $grisUp;
 	color: $grisOscuro;
 	margin-bottom: 10px;
 	h3 {
 		margin-top: 10px;
 		font-size: 16px;
+		.fa-trash-o:hover{
+			cursor: pointer;
+			color: $danger;
+		}
 	}
 }
 .filter-content {

@@ -27,6 +27,36 @@
 					background-color: $naranjaUp;
 				}
 			}
+			.tt-hint {
+				color: white;
+			}
+			.twitter-typeahead {
+				width: 100%;
+				margin-top: 5px;
+			}
+			.tt-dropdown-menu {
+				width: 100%;
+				background-color: rgba( 255, 255, 255, 0.75 );
+				border: 1px solid $naranja;
+				text-align: left;
+				.tt-dataset-vehiculo {
+					padding-top: 15px;
+					padding-bottom: 15px;
+					.tt-suggestion {
+						padding-left: 15px;
+						padding-right: 15px;
+						&:hover {
+							background-color: $naranja;
+							cursor: pointer;
+						}
+						p {
+							padding-top: 5px;
+							padding-bottom: 5px;
+							margin: 0; 
+						}
+					}
+				}
+			}
 		}
 		.publicar {
 			background-color: rgba(41, 41, 41, 0.7);

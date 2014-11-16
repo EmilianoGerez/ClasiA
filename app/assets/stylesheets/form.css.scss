@@ -1,3 +1,15 @@
+//Inicializa vista de Pasos de formulario
+#paso1,
+#paso2,
+#paso3,
+#publicar,
+#continuar_paso1,
+#volver_paso1,
+#continuar_paso2,
+#volver_paso2,
+#titulo_paso {
+	display: none;
+}
 .error {
 	color: $state-danger-text;
 	font-weight: bold;
@@ -46,6 +58,19 @@ fieldset {
 		font-size: 16px;
 		color: $azul;
 	}
+}
+.form-container {
+	position: relative;
+	overflow: hidden;
+}
+.mascara-container {
+	position: absolute;
+	margin-left: -15px;
+	z-index: 9999;
+	height: 100%;
+	width: 100%;
+	background-color: rgba( 66, 66, 66, 0.6);
+	display: none;
 }
 
 @media (max-width: 768px) {

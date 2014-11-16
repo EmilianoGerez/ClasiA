@@ -1,46 +1,52 @@
 (function($) {
     $.get = function(key) {
-        key = key.replace(/[\[]/, '\\[');
-        key = key.replace(/[\]]/, '\\]');
-        var pattern = "[\\?&]" + key + "=([^&#]*)";
-        var regex = new RegExp(pattern);
-        var url = unescape(window.location.href);
-        var results = regex.exec(url);
-        if (results === null) {
-            return null;
-        } else {
-            return results[1];
-        }
-    }
+		key = key.replace(/[\[]/, '\\[');
+		key = key.replace(/[\]]/, '\\]');
+		var pattern = "[\\?&]" + key + "=([^&#]*)";
+		var regex = new RegExp(pattern);
+		var url = unescape(window.location.href);
+		var results = regex.exec(url);
+		if (results === null) {
+			return null;
+		} else {
+			return results[1];
+		}
+	}
 })(jQuery);
 
 $(document).ready(function(){
-	// Estilo input file con bootsjs
-    $(":file").filestyle({buttonName: "btn-primary", buttonText: "Seleccionar", icon: false });
 
-    // Setear segmento
-		if ( $('#vehiculo_segmento_id').val() == "" ) {
-			var segmento = $.get("segmento");
-			$('#vehiculo_segmento_id').val(segmento);
-		}
-	// Inicializar titulo_prev
-		var marca = $('#vehiculo_marca_id :selected').html();
-		var modeloc = $('#vehiculo_modeloCustom').val();
-		var anio = $('#vehiculo_anio').val();
-		var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
-		$('#titulo_prev').val(titulo);
-
-	// Inicializar input alta, previene submit
-		$('#vehiculo_alta').val(''); // prevenir submit
-
+// PASOS DEL FORMULARIO
 	//Pasos de formulario y comprobacion
-		//Inicializar
-		$('#paso2').hide();
-		$('#paso3').hide();
-		$('#publicar').hide();
-		$('#volver_paso1').hide();
-		$('#continuar_paso2').hide();
-		$('#volver_paso2').hide();
+		//Inicializado desde CSS
+		// $('#paso1 .form-control').each(function(){
+		// 	$(this).attr('disabled', true);
+		// });
+		
+		// esconder si se produce un error
+		if ($('.alert-danger').html()){
+			$('#paso0').hide();
+			$('#paso1').fadeIn();
+			$('#continuar_paso0').hide();
+			$('#continuar_paso1').show();
+			$('#titulo_paso').show();
+			
+		}
+		// Paso0 al Paso1
+		$('#continuar_paso0').click(function (){
+			//validacion de inpust requeridas
+			var required = $('#vehiculo_segmento_id').val();
+
+			if ( required){
+				$('#paso0').hide();
+				$('#paso1').fadeIn();
+				$('#continuar_paso0').hide();
+				$('#continuar_paso1').show();
+				$('#titulo_paso').show();
+			}else{
+				$('#segmento_error').html('Error: debes seleccionar un segmento');
+			}
+		});
 
 		// Volver paso1
 		$('#volver_paso1').click(function (){
@@ -105,9 +111,26 @@ $(document).ready(function(){
 		});
 
 
-	//Setear input con variable de usuario
-		var usuario = $("#usuario_id").val();
-		$("#vehiculo_usuario_id").val(usuario);
+// CAMPO SEGMENTO
+    // Setear segmento
+		var segmento = $.get("segmento");
+		if ( $('#vehiculo_segmento_id').val() == "" && segmento != "" ) {
+			$('#vehiculo_segmento_id').val(segmento);
+		}
+		$('#vehiculo_segmento_id').change(function(){
+			$('.mascara-container').show();
+			spinner();
+			var segmento_val = $(this).val();
+			window.location = "?segmento="+segmento_val;
+		});
+
+// CAMPO TITULO
+	// Inicializar titulo_prev
+		var marca = $('#vehiculo_marca_id :selected').html();
+		var modeloc = $('#vehiculo_modeloCustom').val();
+		var anio = $('#vehiculo_anio').val();
+		var titulo = marca + ' ' + ' ' + modeloc + ' ' + anio;
+		$('#titulo_prev').val(titulo);
 
 	//Manejo input titulo
 		$('#vehiculo_marca_id').change(function (){
@@ -132,6 +155,16 @@ $(document).ready(function(){
 			$('#titulo_prev').val(titulo);
 		});
 
+// CAMPO ALTA
+	// Inicializar input alta, previene submit
+		$('#vehiculo_alta').val(''); // prevenir submit
+
+// CAMPO USUARIO
+	//Setear input con variable de usuario
+		var usuario = $("#usuario_id").val();
+		$("#vehiculo_usuario_id").val(usuario);
+
+// ARRAY CARACTERISTICAS
 	// Inicilizar Array de Equipamiento
 		var array_equipamiento = [];
 		var equipamiento = $('#vehiculo_equipamiento').val();
@@ -195,6 +228,9 @@ $(document).ready(function(){
 			$('#vehiculo_exterior').val(array_exterior);
 		});
 
+//FOTOS Y COOCON ANIDADO
+	// Estilo input file con bootsjs
+		$(":file").filestyle({buttonName: "btn-primary", buttonText: "Seleccionar", icon: false });
 	// Fotos Anidadas
 		$( "#agregar" ).click(function() { //cantidad de campos de fotos
 			var cant = $( ".nested-fields" ).length;
@@ -209,3 +245,26 @@ $(document).ready(function(){
 		});
 
 });
+
+function spinner (){
+	// SPINNER
+	var opts = {
+		lines: 13, // The number of lines to draw
+		length: 20, // The length of each line
+		width: 10, // The line thickness
+		radius: 30, // The radius of the inner circle
+		corners: 1, // Corner roundness (0..1)
+		rotate: 0, // The rotation offset
+		direction: 1, // 1: clockwise, -1: counterclockwise
+		color: '#000', // #rgb or #rrggbb or array of colors
+		speed: 1, // Rounds per second
+		trail: 60, // Afterglow percentage
+		shadow: false, // Whether to render a shadow
+		hwaccel: false, // Whether to use hardware acceleration
+		className: 'spinner', // The CSS class to assign to the spinner
+		zIndex: 2e9, // The z-index (defaults to 2000000000)
+		top: '50%', // Top position relative to parent
+		left: '50%' // Left position relative to parent
+	};
+	$('#cargando').after(new Spinner(opts).spin().el);
+}

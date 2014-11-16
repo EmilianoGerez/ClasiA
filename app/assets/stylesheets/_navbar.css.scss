@@ -5,18 +5,22 @@
 	border-bottom-color: $naranja;
 	border-bottom-width: 2px;
 }
-
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus  {
+	background-color: $grisOscuro;
+	border-color: $grisOscuro;	
+}
 .navbar-default{
 
 	.navbar-nav > li > a {
 		padding-left: 30px;
 		padding-right: 30px;
-		//border-bottom: 4px solid $grisOscuro;
+		border-bottom: 4px solid $grisOscuro;
+		border-top: 4px solid $grisOscuro;
 		&:hover,&:focus {
 			border-bottom: 4px solid $grisOscuroUp;
 		}
 	}
-	.navbar-nav .active a{
+	.navbar-nav > .active > a{
 		border-bottom: 4px solid $naranja;
 		&:hover, &:focus, &:active {
 			border-bottom: 4px solid $naranja;
@@ -35,10 +39,24 @@
 	.user-panel {
 	    max-width:250px;
 	    //overflow: hidden;
-
-		.dropdown-menu>li>a {
+		.dropdown-menu {
+			padding-bottom: 0;
+		}
+		.dropdown-menu > li > a {
 		    color: $grisOscuro;
 		    white-space: normal;
+		}
+		.dropdown-menu > li:last-child {
+		    background-color: $gris;
+		    margin-top: 10px; 
+		    padding: 5px;
+		    text-align: center;
+		    &:hover {
+		    	background-color: $grisUp;
+		    } 
+		    & > a:hover {
+		    	background-color: $grisUp;
+		    } 
 		}
 		ul.dropdown-menu {
 		    //border-radius:4px;
@@ -72,13 +90,17 @@
 // FOOTER
 
 footer {
-	background-color: $grisOscuro;
-	margin-top: 30px;
-	.nav > li {
-	  float:none;
-	  display:inline-block;
-	  *display:inline; /* ie7 fix */
-	  *zoom:1; /* hasLayout ie7 trigger */
-	  vertical-align: top;
+	.footer-class {
+		height: 150px;
+		background-color: $grisOscuro;
+		margin-top: 30px;
+		.nav > li {
+		  float:none;
+		  display:inline-block;
+		  *display:inline; /* ie7 fix */
+		  *zoom:1; /* hasLayout ie7 trigger */
+		  vertical-align: top;
+		}
 	}
+	
 }

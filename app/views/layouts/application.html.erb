@@ -8,7 +8,8 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<!-- contenedor de toda la pagina sin el footer -->
+<div id="page-wrapper">
 <!-- MENU -->
     <nav role="navigation" class="navbar navbar-default .navbar-fixed-top">
         <div class="container">    
@@ -28,15 +29,30 @@
                 <!-- Menu -->
                 <ul class="nav navbar-nav navbar-right">
                     <li class="<%= 'active' if current_page?(root_path) %>"><a href="<%= root_path %>">INICIO</a></li>
-                    <li><a href="#">VENDER</a></li>
-                    <li class="user-panel">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">VEHICULOS <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <% segmentos_for_nav.each do |segmento| %>
+                                <li><a href="<%= vehiculos_path %>?vehiculo[segmento_id]=<%= segmento.id %>"><%= segmento.nombre %></a></li>
+                            <% end %>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">PLANES <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="">Usuarios</a></li>
+                            <li><a href="">Agencias</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="<%= new_vehiculo_path %>">PUBLICAR</a></li>
+                    <li class="user-panel <%= 'active' if controller.controller_name == 'usuarios' or controller.controller_name == 'registrations' %>">
                         <% if usuario_signed_in? %>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> PANEL DE USUARIO: <%= current_usuario.nombre %></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="<%=  edit_usuario_registration_path  %>">Mis publicaciones <span class="glyphicon glyphicon-bullhorn pull-right"></span></a></li>
                                 <li class="divider"></li>
                                 <li><a href="<%=  edit_usuario_registration_path  %>">Editar mis datos <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                                <li class="divider"></li>
+                                
                                 <li><%= link_to "Cerrar sesión", destroy_usuario_session_path, method: :delete %></li>
                             </ul>
                         <% else %>
@@ -49,26 +65,30 @@
     </nav>
 <!-- MENU - END --> 
 
-<%= yield %>
 
+<%= yield %>
+</div>
+<!-- fin del contenedor -->
 <!-- FOOTER -->
 <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                    <ul class="nav">
-                        <li class="navbar-text"><%= link_to "About" %></li>
-                        <li class="navbar-text"><%= link_to "FAQs" %></li>
-                        <li class="navbar-text"><%= link_to "Contact Us" %></li>
-                        <li class="navbar-text"><%= link_to "Terms of Use & Privacy Policy" %></li>
-                    </ul>
+    <div class="footer-class">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                        <ul class="nav">
+                            <li class="navbar-text"><%= link_to "About" %></li>
+                            <li class="navbar-text"><%= link_to "FAQs" %></li>
+                            <li class="navbar-text"><%= link_to "Contact Us" %></li>
+                            <li class="navbar-text"><%= link_to "Terms of Use & Privacy Policy" %></li>
+                        </ul>
 
-            </div>
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-4">Logo empresa</div>
-                    <div class="col-xs-4">Derechos Reservados</div>
-                    <div class="col-xs-4">Redes Sociales</div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-4">Logo empresa</div>
+                        <div class="col-xs-4">Derechos Reservados</div>
+                        <div class="col-xs-4">Redes Sociales</div>
+                    </div>
                 </div>
             </div>
         </div>

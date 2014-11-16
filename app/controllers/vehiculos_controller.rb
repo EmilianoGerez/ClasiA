@@ -1,10 +1,11 @@
 class VehiculosController < ApplicationController
   before_action :set_vehiculo, only: [:show, :edit, :update, :destroy]
   before_action :set_empty_vehiculo, only: [:index]
+  before_filter :require_login_create, only: [:new]
   # GET /vehiculos
   # GET /vehiculos.json
   def index
-    
+
     if params[:vehiculo]
       @vehiculo = Vehiculo.new(vehiculo_params)
       @vehiculos_principal = Vehiculo.where(principal: true, alta: true)
@@ -105,17 +106,28 @@ class VehiculosController < ApplicationController
   # GET /vehiculos/1
   # GET /vehiculos/1.json
   def show
+    #para que foto sea un array, en la vista salta el primer elemento
     @foto = ['dummy']
     @foto = @foto + Foto.where(vehiculo_id: @vehiculo.id)
+    #@vehiculo.update(denunciado: 1)
   end
 
   # GET /vehiculos/new
   def new
     @vehiculo = Vehiculo.new
-    segmento = params[:segmento]
-    @caracteristicas_equipamiento = Caracteristica.where(segmento_id: segmento, tipo: 'equipamiento')
-    @caracteristicas_seguridad = Caracteristica.where(segmento_id: segmento, tipo: 'seguridad')
-    @caracteristicas_exterior = Caracteristica.where(segmento_id: segmento, tipo: 'exterior')
+    unless params[:segmento].blank?
+      @segmento = params[:segmento]
+    else
+      unless params[:vehiculo].blank?
+        @segmento = params[:vehiculo][:segmento_id]
+      else
+        @segmento = 1
+      end
+    end
+    @caracteristicas_equipamiento = Caracteristica.where(segmento_id: @segmento, tipo: 'equipamiento')
+    @caracteristicas_seguridad = Caracteristica.where(segmento_id: @segmento, tipo: 'seguridad')
+    @caracteristicas_exterior = Caracteristica.where(segmento_id: @segmento, tipo: 'exterior')
+    
   end
 
   # GET /vehiculos/1/edit
@@ -125,6 +137,11 @@ class VehiculosController < ApplicationController
   # POST /vehiculos
   # POST /vehiculos.json
   def create
+    @segmento = params[:vehiculo][:segmento_id]
+    @caracteristicas_equipamiento = Caracteristica.where(segmento_id: @segmento, tipo: 'equipamiento')
+    @caracteristicas_seguridad = Caracteristica.where(segmento_id: @segmento, tipo: 'seguridad')
+    @caracteristicas_exterior = Caracteristica.where(segmento_id: @segmento, tipo: 'exterior')
+
     @vehiculo = Vehiculo.new(vehiculo_params)
     respond_to do |format|
       if @vehiculo.save
@@ -162,6 +179,13 @@ class VehiculosController < ApplicationController
   end
 
   private
+  # chequeo de logueo al querer publicar
+    def require_login_create
+      unless usuario_signed_in?
+        flash[:notice] = "Debes iniciar sesion para publicar. Si no eres usuario puedes registrarte gratis."
+        redirect_to new_usuario_session_path
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_empty_vehiculo
       @vehiculo = Vehiculo.new

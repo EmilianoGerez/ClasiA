@@ -1,0 +1,21 @@
+@import "thumbnail";
+@import "colors";
+
+.publi-header {
+	h3 {
+		background-color: $grisOscuro;
+		color: $gris;
+		padding: 15px;
+		margin-top: 0;
+		margin-bottom: 0;
+		text-align: center;
+	}
+}
+.btn-default {
+	color: $gris;
+	background-color: $naranja;
+	&:hover, &:active, &:focus {
+		color: $gris;
+		background-color: $naranjaUp;
+	}
+}
