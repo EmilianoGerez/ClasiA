@@ -32,7 +32,30 @@ $(document).ready(function(){
 			$('#titulo_paso').show();
 			
 		}
-		// Paso0 al Paso1
+
+		// Volver paso1
+		$('#paso_1').click(function (){
+			$('#paso1').hide();
+			$('#paso2').hide();
+			$('#paso3').hide();
+			$('#titulo_paso').hide();
+			$('#paso0').fadeIn();
+			$('#continuar_paso1').hide();
+			$('#continuar_paso2').hide();
+			$('#publicar').hide();
+			$('#continuar_paso0').show();
+			$('#punto_4').removeClass('active');
+			$('#punto_4').addClass('disabled');
+			$('#punto_3').removeClass('active');
+			$('#punto_3').removeClass('complete');
+			$('#punto_3').addClass('disabled');
+			$('#punto_2').removeClass('active');
+			$('#punto_2').removeClass('complete');
+			$('#punto_2').addClass('disabled');
+			$('#punto_1').removeClass('complete');
+			$('#punto_1').addClass('active');
+		});
+		// Paso1 al Paso2
 		$('#continuar_paso0').click(function (){
 			//validacion de inpust requeridas
 			var required = $('#vehiculo_segmento_id').val();
@@ -42,14 +65,19 @@ $(document).ready(function(){
 				$('#paso1').fadeIn();
 				$('#continuar_paso0').hide();
 				$('#continuar_paso1').show();
+				$('#titulo_paso').html('Datos del Vehículo');
 				$('#titulo_paso').show();
+				$('#punto_1').removeClass('active');
+				$('#punto_1').addClass('complete');
+				$('#punto_2').removeClass('disabled');
+				$('#punto_2').addClass('active');
 			}else{
 				$('#segmento_error').html('Error: debes seleccionar un segmento');
 			}
 		});
 
-		// Volver paso1
-		$('#volver_paso1').click(function (){
+		// Volver paso2
+		$('#paso_2').click(function (){
 			$('#paso2').hide();
 			$('#paso3').hide();
 			$('#paso1').fadeIn();
@@ -59,10 +87,16 @@ $(document).ready(function(){
 			$('#volver_paso2').hide();
 			$('#publicar').hide();
 			$('#titulo_paso').html('Datos del Vehículo');
-
+			$('#punto_4').removeClass('active');
+			$('#punto_4').addClass('disabled');
+			$('#punto_3').removeClass('active');
+			$('#punto_3').removeClass('complete');
+			$('#punto_3').addClass('disabled');
+			$('#punto_2').removeClass('complete');
+			$('#punto_2').addClass('active');
 		});
 
-		// Paso1 al Paso2
+		// Paso2 al Paso3
 		$('#continuar_paso1').click(function (){
 			//validacion de inpust requeridas
 			var required = $('#vehiculo_dpto_mendoza_id').val() && $('#vehiculo_marca_id').val() && $('#vehiculo_modeloCustom').val() && $('#vehiculo_anio').val() && $('#vehiculo_combustible').val() && $('#vehiculo_condicion').val();
@@ -77,11 +111,15 @@ $(document).ready(function(){
 				$('#continuar_paso2').show();
 				$('#titulo_paso').html('Características del Vehículo');
 				$('#vehiculo_titulo').val( $('#titulo_prev').val()); //setea valor titulo
+				$('#punto_2').removeClass('active');
+				$('#punto_2').addClass('complete');
+				$('#punto_3').removeClass('disabled');
+				$('#punto_3').addClass('active');
 			}
 		});
 
-		// Volver paso2
-		$('#volver_paso2').click(function (){
+		// Volver paso3
+		$('#paso_3').click(function (){
 			$('#paso1').hide();
 			$('#paso3').hide();
 			$('#paso2').fadeIn();
@@ -91,11 +129,17 @@ $(document).ready(function(){
 			$('#volver_paso2').hide();
 			$('#publicar').hide();
 			$('#titulo_paso').html('Características del Vehículo');
+			$('#punto_4').removeClass('active');
+			$('#punto_4').addClass('disabled');
+			$('#punto_3').removeClass('complete');
+			$('#punto_3').addClass('active');
 
 		});
 
-		// Continuar al paso 3
-		$('#continuar_paso2').click(function (){
+		// Continuar al paso 4
+		$('#continuar_paso2, #paso_4').click(function (){
+			$('#paso0').hide();
+			$('#paso1').hide();
 			$('#paso2').hide();
 			$('#paso3').fadeIn();
 			$('#continuar_paso2').hide();
@@ -103,6 +147,10 @@ $(document).ready(function(){
 			$('#volver_paso2').show();
 			$('#publicar').show();
 			$('#titulo_paso').html('Fotos del Vehículo');
+			$('#punto_3').removeClass('active');
+			$('#punto_3').addClass('complete');
+			$('#punto_4').removeClass('disabled');
+			$('#punto_4').addClass('active');
 		});
 
 		// Submit ultimo paso

@@ -10,15 +10,6 @@
           <% end %>
           <div class="product">
               <div class="row">
-                <div class="<%= "agencia-datos" if vehiculo.agencia %>">
-                  <% if vehiculo.agencia %>
-                    <div class="datos text-center">
-                      <h5><%= vehiculo.agencia.nombre %></h5>
-                      <p><span class="glyphicon glyphicon-phone-alt"></span><%= vehiculo.agencia.telefono %></p>
-                      <p><span class="glyphicon glyphicon-envelope"></span><%= vehiculo.agencia.email %></p>
-                      <a href="" class="btn"><span class="glyphicon glyphicon-home"></span>ver sitio</a>
-                    </div>
-                  <% end %>
                 <div class="image">
                   <div class="col-xs-12 col-sm-12 col-md-12 ">
                       <%= image_tag vehiculo.foto_ppal.url(:medium) %>
@@ -32,7 +23,6 @@
                   </div>
                 </div>
               </div>
-              </div>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 titulo">
                       <a href="<%= vehiculo_path(vehiculo) %>"><%= vehiculo.titulo %></a>
@@ -45,11 +35,6 @@
                     <p><span class="glyphicon glyphicon-map-marker"></span><%= vehiculo.dpto_mendoza.nombre %>, Mza</p>
                     <p><span class="glyphicon glyphicon-calendar"></span><%= vehiculo.condicion %> | <%= vehiculo.anio %></p>
                     <p><span class="glyphicon glyphicon-dashboard"></span><%= vehiculo.combustible %></p>
-                    <% if vehiculo.agencia_id %>
-                      <p><span class="glyphicon glyphicon-briefcase"></span><strong><%= vehiculo.agencia.nombre %></strong></p>
-                    <% else %>
-                      <p><span class="glyphicon glyphicon-user"></span></span>Particular</p>
-                    <% end %>
                 </div>
               </div>
               <!-- Determinar si es principal -->
@@ -72,15 +57,6 @@
             <% end %>
             <div class="product">
               <div class="row">
-                <div class="<%= "agencia-datos" if vehiculo.agencia %>">
-                    <% if vehiculo.agencia %>
-                      <div class="datos text-center">
-                        <h5><%= vehiculo.agencia.nombre %></h5>
-                        <p><span class="glyphicon glyphicon-phone-alt"></span><%= vehiculo.agencia.telefono %></p>
-                        <p><span class="glyphicon glyphicon-envelope"></span><%= vehiculo.agencia.email %></p>
-                        <a href="" class="btn"><span class="glyphicon glyphicon-home"></span>ver sitio</a>
-                      </div>
-                    <% end %>
                   <div class="image">
                     <div class="col-xs-12 col-sm-12 col-md-12 ">
                         <%= image_tag vehiculo.foto_ppal.url(:medium) %>
@@ -97,7 +73,6 @@
                         </div>
                     </div>
                   </div>
-                </div>
               </div>
               <div class="row">
                   <div class="col-xs-12 col-sm-12 col-md-12 titulo">
@@ -111,11 +86,6 @@
                       <p><span class="glyphicon glyphicon-map-marker"></span><%= vehiculo.dpto_mendoza.nombre %>, Mza</p>
                       <p><span class="glyphicon glyphicon-calendar"></span><%= vehiculo.condicion %> | <%= vehiculo.anio %></p>
                       <p><span class="glyphicon glyphicon-dashboard"></span><%= vehiculo.combustible %></p>
-                      <% if vehiculo.agencia_id %>
-                        <p><span class="glyphicon glyphicon-briefcase"></span><strong><%= vehiculo.agencia.nombre %></strong></p>
-                      <% else %>
-                        <p><span class="glyphicon glyphicon-user"></span></span>Particular</p>
-                      <% end %>
                   </div>
               </div>
                 <!-- Determinar si es principal -->

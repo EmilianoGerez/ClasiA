@@ -145,13 +145,14 @@
 	.table {
 		width: auto;
 		background-color: $grisUp;
+		img {
+			width: 125px;
+			max-height: 94px;
+			display: block;
+			margin: 0 auto;
+		}
 	}
-	img {
-		width: 125px;
-		max-height: 94px;
-		display: block;
-		margin: 0 auto;
-	}
+	
 }
 .caracteristicas {
 	//margin-top: 15px;
@@ -242,12 +243,18 @@
 			}
 		}
 	}
+	.bx-wrapper {
+		.bx-viewport {
+			max-height: 225px;
+			max-width: 300px; 
+		}
+
+	}
 }
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
-	#bx-pager {
+	.table {
 		img {
 			width: 100px;
-			max-height: 75px;
 		}
 	}
 

@@ -1,0 +1,124 @@
+<section id="header">		
+	<div class="container-fluid header-container">
+		<div class="row">
+			<div class="col-xs-8 col-sm-8 col-md-6 col-lg-5 header_agencia">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 logo hidden-xs">
+						<img src="http://placehold.it/250x188" alt="">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6">
+						<h3><%= @agencia.nombre %></h3>
+						<hr>
+						<div class="datos-container">
+							<p><span class="glyphicon glyphicon-map-marker"></span><%= @agencia.dpto_mendoza.nombre %> | Mza.</p>
+							<p><span class="glyphicon glyphicon-road"></span><%= @agencia.direccion %></p>
+							<p><span class="glyphicon glyphicon-phone-alt"></span><%= @agencia.telefono %></p>
+							<p><span class="glyphicon glyphicon-envelope"></span><%= @agencia.email %></p>
+							<p><span class="glyphicon glyphicon-globe"></span><%= @agencia.web %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="map"></div>
+</section>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center titulo-seccion">
+				<hr>
+				<h2>Vehículos</h2>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 " id = "menu_agencia">
+				<nav class="navbar navbar-default" role="navigation">
+				  <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <div class="navbar-header">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+				    </div>
+
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				      <ul class="nav navbar-nav">
+				        <li class="<%= 'active' if @segmento.blank? %>"><a href="<%= agencia_home_path %>" >Todos</a></li>
+				        <% @segmentos.each do |seg| %>
+				        	<li class="<%= 'active' if @segmento == seg.segmento_id.to_s %>">
+				        		<a href="<%= agencia_home_path %>?segmento=<%= seg.segmento_id %>" ><%= seg.segmento.nombre %></a>
+				        	</li>
+				        <% end %>
+				      </ul>
+				    </div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+			  	</nav>
+			</div>
+		</div>
+		<div class="row">
+			<%= render 'vehiculo_thumb_agencia' %>
+		</div>
+	</div>
+</section>
+<section class="" id="servicio">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center titulo-seccion">
+				<hr>
+				<h2>Servicios</h2>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-md-3 text-center servicio-thumb">
+				<div class="circulo"><span class="glyphicon glyphicon-credit-card"></span></div>
+				<hr>
+				<h3>Financiación</h3>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 text-center servicio-thumb">
+				<div class="circulo"><span class="glyphicon glyphicon-cog"></span></div>
+				<hr>
+				<h3>Garantía</h3>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 text-center servicio-thumb">
+				<div class="circulo"><span class="glyphicon glyphicon-user"></span></div>
+				<hr>
+				<h3>Asesoramiento</h3>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-3 text-center servicio-thumb">
+				<div class="circulo"><span class="glyphicon glyphicon-refresh"></span></div>
+				<hr>
+				<h3>Cotizamos tu vehículo</h3>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<section class="" id="aderirse">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center titulo-seccion">
+				<hr>
+				<h2>Novedades</h2>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-md-4">
+				
+			</div>
+			<div class="col-xs-12 col-md-8">
+				
+			</div>
+		</div>
+	</div>
+</section>
+
+<%= stylesheet_link_tag    'agencia', 'data-turbolinks-track' => true %>

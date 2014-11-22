@@ -9,3 +9,5 @@ Rails.application.config.assets.precompile += %w( vehiculo_show.js )
 
 # HOJAS DE ESTILO CSS
 Rails.application.config.assets.precompile += %w( mis_publicaciones.css )
+Rails.application.config.assets.precompile += %w( agencia.css )
+Rails.application.config.assets.precompile += %w( vehiculos.css )

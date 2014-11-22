@@ -55,6 +55,7 @@
 
 			p {
 				color: $blanco;
+				text-shadow: 1px 1px 1px $grisOscuro;
 				margin: 0;
 				margin-bottom: 5px;
 				margin-left: 10px;
@@ -209,6 +210,9 @@
 			div {
 				height: 188px;
 			}
+		}
+		.caracteristicas {
+			margin-top:0;
 		}
 	}
 }

@@ -148,8 +148,8 @@ $( document ).ready(function() {
 
 	// spinner en submit
 	$('#new_vehiculo').submit(function(){
-		$('input').prop( "disabled", true );
-		$('select').prop( "disabled", true );
+		//$('input').prop( "disabled", true );
+		//$('select').addClass( "disabled");
 		spinner();
 	});
 

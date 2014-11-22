@@ -7,6 +7,23 @@
     <div class="col-xs-12 col-md-9">
       <div id="cargando"></div>
       <div class="row">
+        <!-- Alerta si no hay resultados -->
+        <% if @vehiculos.blank? %>
+          <div id="alert-empty" class="col-xs-12 alert alert-warning" role="alert">
+            <div class="row">
+              <div class="col-xs-12 col-sm-2 col-md-2 text-center">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+              </div>
+              <div class="col-xs-12 col-sm-10 col-md-10">
+                <p><strong>No se encontraron resultados!!.</strong> Si has aplicado filtros recuerda eliminar los filtros, pulsando en <strong>"Eliminar Todos"</strong> o individualmente en <strong><i class="fa fa-trash-o"></i></strong></p>
+                <% unless @vehiculos_principal.blank? %>
+                  <p>Las <strong>Ofertas</strong> no respetan las opciones de filtrado.</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- Mostrar vehiculos -->
         <%= render 'vehiculo_thumb' %>
       </div>
     </div>
@@ -21,6 +38,6 @@
   </div>
 </div>
 
-
+<%= stylesheet_link_tag    'vehiculos', media: 'all', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'filtro', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'bootstrap-slider', 'data-turbolinks-track' => true %>

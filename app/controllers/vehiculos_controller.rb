@@ -8,14 +8,15 @@ class VehiculosController < ApplicationController
 
     if params[:vehiculo]
       @vehiculo = Vehiculo.new(vehiculo_params)
-      @vehiculos_principal = Vehiculo.where(principal: true, alta: true)
 
       # obtener el paramtero segmento y filtrar la busqueda
       @segmento = params[:vehiculo][:segmento_id]
       if @segmento.blank?
         @vehiculos = Vehiculo.where(principal: false, alta: true)
+        @vehiculos_principal = Vehiculo.where(principal: true, alta: true)
       else
         @vehiculos = Vehiculo.where(segmento_id: @segmento, principal: false, alta: true)
+        @vehiculos_principal = Vehiculo.where(segmento_id: @segmento, principal: true, alta: true)
       end
 
       # MARCA

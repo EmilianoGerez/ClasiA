@@ -1,0 +1,165 @@
+@import "colors";
+
+.acciones {
+	padding-bottom:5px;
+	div:first-child {
+		padding-right: 0px;
+	}
+	div:last-child {
+		padding-left: 0px;
+	}
+	.btn {
+		width: 100%;
+	}
+}
+.product {
+	margin-bottom: 15px;
+	background-color: $blanco;
+	border: 1px solid $grisOscuro;
+	padding-bottom: 15px;
+	&:hover {
+		border: 1px solid $naranjaLight;
+	}
+	hr {
+		padding: 0;
+		margin: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		border-color: $grisUp;
+	}
+	.row {
+		margin: 0;
+		position: relative;
+	}
+	
+	.image {
+		background-color: $gris; 
+
+		img{
+			height: 100%;
+		}
+		div {
+			margin: 0;
+			padding: 0;
+			height: 197px;
+			overflow: hidden;
+		}
+	}
+	.usuario{
+		div:first-child {
+				margin: 0;
+				padding: 0;
+			}
+		 	a {
+				display: block;
+				text-decoration: none;
+			}
+			.tipo-publi {
+				a, h5 {
+					background-color: $gris;
+					height: 18px;
+					margin-top: 0;
+					margin-bottom: 0;
+					line-height: 18px;
+					.glyphicon {
+						font-size: 12px;
+					}
+				}
+			}
+			.destacado-publi {
+				a, h5 {
+					background-color: $naranja;
+					color: $blanco;
+				}
+			}
+			.principal-publi {
+				a, h5 {
+					background-color: $danger;
+					color: $blanco;
+				}
+			}
+	}
+	.titulo {
+		height: 60px;
+		overflow: hidden;
+		a {
+			font-size: 14px;
+			font-weight: bold;
+			display: block;
+			color: $grisOscuro;
+			text-decoration: none;
+			padding-top: 10px;
+			&:hover, &:active, &:focus {
+				color: $azul;
+			}
+			.glyphicon {
+				color: $azul;
+				font-size: 12px;
+				margin-left: 5px;
+			}
+		}
+	}
+	.precio{
+		color: $naranja;
+		font-size: 16px;
+		font-weight: bold;
+		.glyphicon {
+			font-size: 14px;
+			color: $grisOscuro;
+			margin-right: 5px;
+		}
+	}
+	.caracteristicas {
+		font-size: 14px;
+		.glyphicon {
+			color: $naranja;
+			//margin-left: 10px;
+			margin-right: 5px;
+		}
+		.glyphicon:first-child {
+			margin-left: 0px;
+			margin-right: 5px;
+		}
+	}
+	.icon-tipo {
+		height: 30px;
+		width: 30px;
+		position: absolute;
+		right: 16px;
+		bottom: 16px;
+		font-size: 25px;
+		color: $grisUp;
+		line-height: 30px;
+	}
+	.icon-principal {
+		color: $danger;
+	}
+}
+
+// small
+@media (max-width: 991px) {
+	.product {
+		.image {
+			img {
+				width: 100%;
+				max-height: 188px;
+			}
+			div {
+				height: 188px;
+			}
+		}
+		.caracteristicas {
+			margin-top:0;
+		}
+	}
+}
+//netbook y tablet
+@media (min-width: 992px) and (max-width: 1199px) {
+	.product {
+		.image {
+			div {
+				height: 219px;
+			}
+		}
+	}
+}

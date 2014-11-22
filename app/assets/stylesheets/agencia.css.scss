@@ -1,0 +1,197 @@
+@import "colors";
+@import "screen_size";
+@import "thumbnail_agencia";
+
+#menu_ppal {
+	display: none;
+}
+
+#header {
+	padding: 0;
+	margin: 0;
+	height: 400px;
+	width: 100%;
+	position: relative;
+	//border-bottom: 2px solid $naranja;
+}
+#map {
+	background-color: $azul;
+	height: 100%;
+	width: 100%;
+}
+.header-container{
+	padding: 0;
+	padding-left: 15px;
+	width: 90%;
+	position: absolute;
+	bottom: 15px;
+	margin-left: 15px;
+
+	.header_agencia {
+		background-color: $gris;
+		padding: 15px;
+		//border-bottom: 3px solid $grisOscuro;
+		.logo{
+			margin-top: 15px;
+			img {
+				height: 200px;
+				display: block;
+				margin: 0 auto;
+			}
+		}
+		h3 {
+			margin: 0;
+			padding: 10px; 
+			text-align: center;
+		}
+		hr {
+			border: 1px solid $grisUp;
+			margin-top: 0;
+			margin-bottom: 5px;
+		}
+		.datos-container{
+			padding: 10px;
+			padding-top: 10px;
+			.glyphicon {
+				margin-right: 15px;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+#menu_agencia {
+	.navbar{
+		margin-bottom: 0px;
+	}
+	.nav .open > a, .nav .open > a:hover, .nav .open > a:focus  {
+		background-color: $grisOscuro;
+		border-color: $grisOscuro;	
+	}
+	.navbar-default{
+		background-color: $grisUp;
+		border: none;
+		margin-bottom: 30px;
+		.navbar-nav {
+			float: none;
+			text-align: center;
+		}
+		.navbar-nav > li {
+			 float: none;
+		}
+		.nav > li {
+        	display: inline;
+    	}
+		.navbar-nav > li > a {
+			color: $grisOscuro;
+			display: inline-block;
+			font-size: 16px;
+			font-family: helvetica;
+			padding-left: 30px;
+			padding-right: 30px;
+			&:hover,&:focus {
+				color: $azul;
+			}
+		}
+		.navbar-nav > .active > a{
+			color: $azul;
+			background-color: $gris;
+			border: 0.5px solid #adadad;
+			border-bottom: none;
+		}
+	}
+}
+
+.titulo-seccion{
+	hr {
+		border: 1px solid $grisUp;
+		&:first-child {
+			margin-top: 30px;
+		}
+		&:last-child {
+			margin-bottom: 30px;
+		}
+		
+	}
+}
+
+#servicio {
+	.servicio-thumb {
+		.circulo {
+			display: block;
+			margin: 0 auto;
+			background-color: $azul;
+			width: 120px;
+			height: 120px;
+			border-radius: 60px;
+			.glyphicon{
+				line-height: 120px;
+				font-size: 48px;
+				color: $gris;
+			}
+		}
+		h3 {
+			margin-top: 5px;
+			margin-bottom: 15px;
+		}
+		hr {
+			width: 60px;
+			border: 1px solid $grisUp;
+			margin-top: 15px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+@media (max-width: $screen-xs-max){
+	.header-container{
+		padding: 0;
+		padding-left: 15px;
+		width: 90%;
+		position: absolute;
+		bottom: 15px;
+		margin-left: 15px;
+
+		.header_agencia {
+			.logo{
+				img {
+					max-width: 250px;
+				}
+			}
+		}
+	}
+
+	#menu_agencia {
+		.navbar-default{
+			.navbar-nav {
+				float: none;
+				text-align: left;
+			}
+			.navbar-nav > li {
+				 float: none;
+			}
+			.nav > li {
+	        	display: block;
+	    	}
+	    	.navbar-nav > li > a {
+				display: block;
+			}
+		}
+	}
+
+}
+
+@media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+	.header-container{
+		.header_agencia {
+			.logo{
+				margin-top: 35px;
+				img {
+					height: 160px;
+					display: block;
+					margin: 0 auto;
+				}
+			}
+		}
+	}
+}

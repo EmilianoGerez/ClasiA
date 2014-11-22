@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'agencia/:id' => 'agencia#index', as: 'agencia_home'
+
   get 'usuarios/publicaciones' => 'usuarios#publicaciones'
 
   resources :vehiculos

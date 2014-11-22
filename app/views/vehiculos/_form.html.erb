@@ -6,6 +6,39 @@
       <h2 class="h-padding">Publicar Vehículo</h2>
     </div>
   </div>
+
+  <div class="row bs-wizard" style="border-bottom:0;">
+      
+      <div id="punto_1" class="col-xs-3 bs-wizard-step active">
+        <div class="text-center bs-wizard-stepnum">Paso 1</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a id="paso_1" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">Datos de publicación</div>
+      </div>
+      
+      <div id="punto_2" class="col-xs-3 bs-wizard-step disabled">
+        <div class="text-center bs-wizard-stepnum">Paso 2</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a id="paso_2"  class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">Datos del vehículo</div>
+      </div>
+      
+      <div id="punto_3" class="col-xs-3 bs-wizard-step disabled">
+        <div class="text-center bs-wizard-stepnum">Paso 3</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a id="paso_3" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">Características</div>
+      </div>
+      
+      <div id="punto_4" class="col-xs-3 bs-wizard-step disabled">
+        <div class="text-center bs-wizard-stepnum">Paso 4</div>
+        <div class="progress"><div class="progress-bar"></div></div>
+        <a id="paso_4" class="bs-wizard-dot"></a>
+        <div class="bs-wizard-info text-center">Fotos</div>
+      </div>
+  </div>
+
+
   <div class="row">
     <%= simple_form_for @vehiculo, :html => {multipart: true, id: 'form_new'}, defaults: { input_html: { class: 'form-control' }, label: false } do |f| %>
 
@@ -173,13 +206,13 @@
           <%= f.input :alta, required: true, as: :hidden %>
       </div>
       <!-- BOTONES -->
+    </div>
+    <div class="col-xs-12 col-md-offset-2 col-md-8">
       <hr>
       <div class="form-group">
           <button type='submit' id='continuar_paso0' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
           <button type='submit' id='continuar_paso1' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
-          <a id='volver_paso1' class='btn btn-default'>Paso 1</a>
           <button type='submit' id='continuar_paso2' class='btn btn-primary'>Continuar&nbsp;&nbsp;<span class="glyphicon glyphicon-arrow-right"></span></button>
-          <a id='volver_paso2' class='btn btn-default'>Paso 2</a>
           <%= f.button :submit, "Publicar", class: 'btn btn-success', id: 'publicar' %>
       </div> 
     </div>

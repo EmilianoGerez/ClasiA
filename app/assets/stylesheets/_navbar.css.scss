@@ -1,88 +1,90 @@
 @import "colors";
 
-.navbar{
-	margin-bottom: 0px;
-	border-bottom-color: $naranja;
-	border-bottom-width: 2px;
-}
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus  {
-	background-color: $grisOscuro;
-	border-color: $grisOscuro;	
-}
-.navbar-default{
+#menu_ppal {
+	.navbar{
+		margin-bottom: 0px;
+		border-bottom-color: $naranja;
+		border-bottom-width: 2px;
+	}
+	.nav .open > a, .nav .open > a:hover, .nav .open > a:focus  {
+		background-color: $grisOscuro;
+		border-color: $grisOscuro;	
+	}
+	.navbar-default{
 
-	.navbar-nav > li > a {
-		padding-left: 30px;
-		padding-right: 30px;
-		border-bottom: 4px solid $grisOscuro;
-		border-top: 4px solid $grisOscuro;
-		&:hover,&:focus {
-			border-bottom: 4px solid $grisOscuroUp;
+		.navbar-nav > li > a {
+			padding-left: 30px;
+			padding-right: 30px;
+			border-bottom: 4px solid $grisOscuro;
+			border-top: 4px solid $grisOscuro;
+			&:hover,&:focus {
+				border-bottom: 4px solid $grisOscuroUp;
+			}
 		}
-	}
-	.navbar-nav > .active > a{
-		border-bottom: 4px solid $naranja;
-		&:hover, &:focus, &:active {
+		.navbar-nav > .active > a{
 			border-bottom: 4px solid $naranja;
-		}
-	}
-	.dropdown-menu > li > a {
-		color: $grisOscuro;
-		&:hover, &:focus { 
-			color: $blanco;
-			background-color: $naranja;
-		}
-	}
-	.open {
-		background-color: none;
-	}
-	.user-panel {
-	    max-width:250px;
-	    //overflow: hidden;
-		.dropdown-menu {
-			padding-bottom: 0;
+			&:hover, &:focus, &:active {
+				border-bottom: 4px solid $naranja;
+			}
 		}
 		.dropdown-menu > li > a {
-		    color: $grisOscuro;
-		    white-space: normal;
+			color: $grisOscuro;
+			&:hover, &:focus { 
+				color: $blanco;
+				background-color: $naranja;
+			}
 		}
-		.dropdown-menu > li:last-child {
-		    background-color: $gris;
-		    margin-top: 10px; 
-		    padding: 5px;
-		    text-align: center;
-		    &:hover {
-		    	background-color: $grisUp;
-		    } 
-		    & > a:hover {
-		    	background-color: $grisUp;
-		    } 
+		.open {
+			background-color: none;
 		}
-		ul.dropdown-menu {
-		    //border-radius:4px;
-		    //box-shadow:none;
-		    margin-top:15px;
-		    width:250px;
-		}
-		ul.dropdown-menu:before {
-		    content: "";
-		    border-bottom: 10px solid #fff;
-		    border-right: 10px solid transparent;
-		    border-left: 10px solid transparent;
-		    position: absolute;
-		    top: -10px;
-		    right: 16px;
-		    z-index: 10;
-		}
-		ul.dropdown-menu:after {
-		    content: "";
-		    border-bottom: 12px solid #ccc;
-		    border-right: 12px solid transparent;
-		    border-left: 12px solid transparent;
-		    position: absolute;
-		    top: -12px;
-		    right: 14px;
-		    z-index: 9;
+		.user-panel {
+		    max-width:250px;
+		    //overflow: hidden;
+			.dropdown-menu {
+				padding-bottom: 0;
+			}
+			.dropdown-menu > li > a {
+			    color: $grisOscuro;
+			    white-space: normal;
+			}
+			.dropdown-menu > li:last-child {
+			    background-color: $gris;
+			    margin-top: 10px; 
+			    padding: 5px;
+			    text-align: center;
+			    &:hover {
+			    	background-color: $grisUp;
+			    } 
+			    & > a:hover {
+			    	background-color: $grisUp;
+			    } 
+			}
+			ul.dropdown-menu {
+			    //border-radius:4px;
+			    //box-shadow:none;
+			    margin-top:15px;
+			    width:250px;
+			}
+			ul.dropdown-menu:before {
+			    content: "";
+			    border-bottom: 10px solid #fff;
+			    border-right: 10px solid transparent;
+			    border-left: 10px solid transparent;
+			    position: absolute;
+			    top: -10px;
+			    right: 16px;
+			    z-index: 10;
+			}
+			ul.dropdown-menu:after {
+			    content: "";
+			    border-bottom: 12px solid #ccc;
+			    border-right: 12px solid transparent;
+			    border-left: 12px solid transparent;
+			    position: absolute;
+			    top: -12px;
+			    right: 14px;
+			    z-index: 9;
+			}
 		}
 	}
 }
